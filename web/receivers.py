@@ -5,5 +5,5 @@ from web.models import Visitor
 
 
 @receiver(post_save, sender=Visitor)
-def update_device_data(instance: Visitor, created: bool, raw: bool, **kwargs):
+def update_visitor_data(instance: Visitor, created: bool, raw: bool, **kwargs):
     print(instance, created, raw)
