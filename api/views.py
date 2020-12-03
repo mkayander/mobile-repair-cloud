@@ -27,6 +27,9 @@ def acquire_visitor_identity(request):
         print("---------------------------------")
         pprint(info)
 
-    return Response({
-        "identity_code": "hello there"
-    })
+    visitor = Visitor()
+    visitor.user_agent = request.headers['User-Agent']
+    visitor.visit()
+    visitor.save()
+
+    return Response(VisitorSerializer(visitor, context={'request': request}).data)
