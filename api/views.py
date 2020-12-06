@@ -1,16 +1,23 @@
 from pprint import pprint
 
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import VisitorSerializer
-from web.models import Visitor
+from api.serializers import VisitorSerializer, FeedbackRequestSerializer
+from web.models import Visitor, FeedbackRequest
 
 
-class VisitorViewSet(viewsets.ModelViewSet):
+class VisitorViewSet(mixins.RetrieveModelMixin,
+                     mixins.CreateModelMixin,
+                     viewsets.GenericViewSet):
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
+
+
+class FeedbackRequestViewSet(viewsets.ModelViewSet):
+    queryset = FeedbackRequest.objects.all()
+    serializer_class = FeedbackRequestSerializer
 
 
 @api_view(["GET"])

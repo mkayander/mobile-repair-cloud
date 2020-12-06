@@ -1,0 +1,260 @@
+.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, .navbar {
+  -webkit-transition: all 0.3s ease-out;
+  -moz-transition: all 0.3s ease-out;
+  -o-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+
+.contacts-section, .gallery-section, .top-section {
+  background: #00171f;
+  overflow: hidden;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  color: #f8f9fa;
+}
+
+.navbar.scrolled {
+  background: #007ea7;
+  padding: 8px 16px;
+}
+
+.telephone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+  color: white;
+}
+.telephone img {
+  margin-right: 10px;
+}
+.telephone h4 {
+  margin: 0 0;
+}
+.telephone:hover {
+  cursor: pointer;
+  color: #4adc3a;
+}
+
+.top-section {
+  padding-bottom: 2.5rem;
+}
+.top-section .hero-space {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8rem;
+}
+.top-section .top-background-svg {
+  position: absolute;
+  width: 100%;
+  max-height: 85%;
+  object-fit: cover;
+}
+.top-section .row {
+  margin: 16% 0 0;
+}
+
+.top-smartphone {
+  width: 30%;
+}
+
+.feature-card {
+  display: block !important;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  min-height: 14rem;
+  background-color: #f8f9fa;
+  padding: 50px 6% 3%;
+  margin: 2.5rem 0;
+}
+.feature-card h3 {
+  text-align: center;
+  color: black;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+.feature-card p {
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  color: gray;
+}
+.feature-card:hover {
+  transform: translate(0, -1rem);
+  box-shadow: 0 4px 20px -5px rgba(0, 168, 232, 0.4);
+  color: white;
+  background-color: #00a8e8;
+}
+.feature-card:hover p, .feature-card:hover h3 {
+  color: white;
+}
+
+.feature-icon-wrap {
+  position: absolute;
+  left: 50%;
+  top: -50px;
+  height: 80px;
+  width: 80px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background-color: #00a8e8;
+}
+
+.feature-card:hover > .feature-icon-wrap {
+  box-shadow: 0 0 20px 0 rgba(0, 168, 232, 0.4);
+  background: white;
+  color: #00a8e8;
+}
+
+.feature-icon {
+  position: relative;
+  font-size: 40px;
+  float: left;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.gallery-section {
+  background: #0e2229;
+  padding: 1.5rem 0;
+}
+.gallery-section #primarySlider {
+  min-height: 10rem;
+}
+.gallery-section #thumbnailsSlider {
+  min-height: 2rem;
+}
+
+.contacts-section {
+  padding: 2rem 0;
+}
+
+.contacts-info {
+  margin: 2rem 0;
+}
+.contacts-info a {
+  color: white;
+}
+.contacts-info .contacts-item {
+  margin-top: 1.5rem;
+  margin-right: auto;
+}
+.contacts-info .contacts-item > a {
+  text-align: center;
+  display: flex;
+  flex-wrap: nowrap;
+  user-select: text;
+}
+.contacts-info .contacts-item > a:hover {
+  text-decoration: none;
+  color: #00a8e8;
+  transform: translate(10px 0);
+}
+.contacts-info .contacts-item i {
+  width: 30px;
+  font-size: 30px;
+  margin-right: 1rem;
+}
+.contacts-info .contacts-item span {
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.maps {
+  position: relative;
+  padding-bottom: 50%;
+  height: 0;
+  overflow: hidden;
+}
+.maps iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.feedback-section {
+  padding: 2.5rem 0;
+  background-image: url("../img/kompjuternaja-i-mobilnaja-tehnika-2.png");
+  background-size: cover;
+  background-attachment: fixed;
+}
+.feedback-section :before {
+  content: "";
+  background: linear-gradient(to right, #4286f4 0%, #42e2f4 100%);
+}
+.feedback-section .feedback-background {
+  position: absolute;
+  float: bottom;
+}
+.feedback-section .feedback-form {
+  -ms-flex-preferred-size: 0;
+  flex-basis: auto;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  max-width: 720px;
+  margin-top: 1.5rem;
+  padding: 3rem;
+  background-image: linear-gradient(to right top, #00171f, #031f2a, #032836, #023242, #013b4e);
+  border-radius: 10px;
+}
+.feedback-section .feedback-form .messages {
+  margin-top: 0.5rem;
+  color: red;
+}
+.feedback-section h1, .feedback-section h3 {
+  text-align: center;
+}
+
+footer {
+  padding: 1rem 1rem;
+  background: #00171f;
+}
+footer hr {
+  border: none;
+  color: darkslategray;
+  background-color: gray;
+  height: 1px;
+}
+
+.rbtn {
+  font-size: 16px;
+  border-radius: 30px;
+  padding: 10px 30px;
+  outline: none;
+}
+
+.rbtn.rbtn-primary {
+  border: 1px solid transparent;
+  background: #00a8e8;
+  color: #fff;
+  position: relative;
+  top: 0;
+  -moz-box-shadow: 0 0 20px -5px rgba(0, 168, 232, 0.5);
+  -o-box-shadow: 0 0 20px -5px rgba(0, 168, 232, 0.5);
+  -webkit-box-shadow: 0 0 20px -5px rgba(0, 168, 232, 0.5);
+  box-shadow: 0 0 20px -5px rgba(0, 168, 232, 0.5);
+}
+.rbtn.rbtn-primary:hover {
+  transform: translate(0, -3px);
+  -moz-box-shadow: 0 3px 20px -5px rgba(0, 168, 232, 0.7);
+  -o-box-shadow: 0 3px 20px -5px rgba(0, 168, 232, 0.7);
+  -webkit-box-shadow: 0 3px 20px -5px rgba(0, 168, 232, 0.7);
+  box-shadow: 0 3px 20px -5px rgba(0, 168, 232, 0.7);
+}
+.rbtn.rbtn-primary:focus {
+  outline: none;
+}
+.rbtn.rbtn-primary:active {
+  background: #007ea7;
+}
+
+/*# sourceMappingURL=landing.css.map */

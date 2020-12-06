@@ -24,7 +24,7 @@ SECRET_KEY = 'r+b!)8o!7ahd-i1&@7t!xq^x&kgl)n@6$^&)%#u7pt9m)pvzq('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', '192.168.0.186']
 
 # Application definition
 
@@ -39,7 +39,8 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'crispy_forms',
-    'rest_framework'
+    'rest_framework',
+    'phonenumber_field',
     # 'encrypted_fields'
 ]
 
@@ -66,7 +67,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -133,6 +134,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    # BASE_DIR / "static",
+    BASE_DIR / "web/static",
+]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Прямоугольник_1" data-name="Прямоугольник 1" width="1920" height="1080" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <radialGradient id="radial-gradient" cx="0.543" cy="0.534" r="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#003459"/>
+      <stop offset="1" stop-color="#00a8e8"/>
+    </radialGradient>
+  </defs>
+  <g id="Background" clip-path="url(#clip-path)">
+    <g id="NavBackground">
+      <ellipse id="Эллипс_2" data-name="Эллипс 2" cx="1579.5" cy="1108.5" rx="1579.5" ry="1108.5" transform="translate(-76 -1447)" opacity="0.53" fill="url(#radial-gradient)"/>
+      <ellipse id="Эллипс_1" data-name="Эллипс 1" cx="1579.5" cy="1108.5" rx="1579.5" ry="1108.5" transform="translate(-118 -1529)" fill="url(#radial-gradient)"/>
+    </g>
+  </g>
+</svg>
