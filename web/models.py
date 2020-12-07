@@ -24,7 +24,7 @@ class Visitor(TimeModelMixin):
         verbose_name_plural = "Посетители"
 
     def __str__(self):
-        return f"Visitor {self.session_id} {self.last_visit.strftime('%x %X')}"
+        return f"Visitor({self.id}) {self.session_id} {self.last_visit and self.last_visit.strftime('%x %X')}"
 
     def visit(self):
         self.visit_count = self.visit_count + 1
@@ -34,10 +34,10 @@ class Visitor(TimeModelMixin):
 class FeedbackRequest(TimeModelMixin):
     visitor = models.ForeignKey(Visitor, on_delete=models.SET_NULL, related_name="requests", verbose_name="Посетитель",
                                 null=True)
-    email = models.EmailField(verbose_name="Адрес электронной почты", name="email")
-    phone = PhoneNumberField(verbose_name="Номер телефона")
+    email = models.EmailField(verbose_name="Адрес электронной почты", name="email", null=True)
+    phone = PhoneNumberField(verbose_name="Номер телефона", null=True)
     subject = models.CharField(verbose_name="Тема", max_length=100, null=True)
-    message = models.TextField(verbose_name="Сообщение")
+    message = models.TextField(verbose_name="Сообщение", null=True)
 
     class Meta:
         verbose_name = "Запрос на обратную связь"

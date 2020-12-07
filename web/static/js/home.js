@@ -19,7 +19,7 @@ function checkScroll() {
     }
 }
 
-function httpGetJSON(url, callback) {
+function ajaxGetJSON(url, callback) {
     let request = new XMLHttpRequest();
     request.open('GET', url, true);
 
@@ -39,33 +39,35 @@ function httpGetJSON(url, callback) {
     request = null;
 }
 
+function ajaxPostJSON(url, json, onSuccess, onError) {
+    console.log(json);
+    const request = new XMLHttpRequest();
+    // Define what happens on successful data submission
+    request.addEventListener("load", event => {
+        // alert(event.target.responseText);
+        console.log(event.target);
+        onSuccess(event);
+    });
+
+    // Define what happens in case of error
+    request.addEventListener("error", event => {
+        console.log("Failed to post data", event);
+        onError(event);
+    });
+    request.open('POST', url, true);
+    request.setRequestHeader("X-CSRFToken", getCookie("csrftoken"));
+    request.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    request.send(json);
+}
+
 function getPicsumUrl(id, width, height) {
     return `https://picsum.photos/id/${id}/${width}/${height}`;
 }
 
 
-// class FeedbackForm {
-//     constructor(email, phone, theme, message) {
-//         this.email = email;
-//         this.phone = phone;
-//         this.theme = theme;
-//         this.message = message;
-//     }
-// }
-
-// function feedbackFormIsValid(data) {
-//     if (!data instanceof FeedbackForm) return false;
-//
-//     let contactValid, emailValid, phoneValid, subjectValid, messageValid;
-//     console.log(data);
-//
-//     contactValid = data.email.value + data.phone.value;
-//
-//     return contactValid && emailValid && phoneValid && subjectValid && messageValid;
-// }
-
 function initFeedbackForm() {
     const form = document.getElementById("feedbackForm");
+
     const validateContacts = form => {
         let result = true;
         if (!form.elements.email.value && !form.elements.phone.value) {
@@ -78,6 +80,21 @@ function initFeedbackForm() {
         }
         return result;
     };
+
+    const postData = () => {
+        let formDataObj = Object.fromEntries(new FormData(form));
+        // formDataObj["csrfmiddlewaretoken"] = getCookie('csrftoken');
+
+        ajaxPostJSON("/api/feedback-requests/", JSON.stringify(formDataObj),
+            ev => {
+                alert("Запрос отправлен успешно! Мы свяжемся с Вами в ближайшее время.");
+            },
+            ev => {
+                alert("Что-т пошло не так! Пожалуйста, повторите попытку чуть позже.");
+            }
+        );
+    };
+
     const handleFeedbackSubmit = ev => {
         if (!validateContacts(form)) return;
 
@@ -86,25 +103,26 @@ function initFeedbackForm() {
         // then we update the form to reflect the results
         showErrors(form, errors || {});
         if (!errors) {
-            console.log("Success!", ev);
+            postData();
         } else {
             console.log("Failed", errors);
         }
     };
+
     form.addEventListener("submit", ev => {
         ev.preventDefault();
         handleFeedbackSubmit(ev);
     });
 
     const constraints = {
-        email: {
+        email : {
             // presence: {
             //     allowEmpty: false,
             //     message: "Пожалуйста, введите адрес электронной почты"
             // },
             // email: true
-            email: {
-                message: "введён некорректно"
+            email : {
+                message : "введён некорректно"
             }
         },
         // phone: {
@@ -116,10 +134,10 @@ function initFeedbackForm() {
         //         message: "Неверный формат номера телефона. Прим.: +78004919067"
         //     }
         // },
-        theme: {
+        theme : {
             // presence: true
         },
-        message: {
+        message : {
             // presence: true
         }
     };
@@ -139,22 +157,6 @@ function initFeedbackForm() {
         phoneInput.value = phoneInput.value.replaceAll(/[^0-9+]/g, "");
     });
 
-    // const feedbackForm = new FeedbackForm(
-    //     document.getElementById("email"),
-    //     document.getElementById("phone"),
-    //     document.getElementById("subject"),
-    //     document.getElementById("message")
-    // );
-
-    // document.getElementById("sendFeedback").addEventListener("click", ev => {
-    //     // console.log(feedbackFormIsValid(feedbackForm));
-    //     console.log(validate({
-    //         email: feedbackForm.email.value,
-    //         phone: feedbackForm.phone.value,
-    //         theme: feedbackForm.theme.value,
-    //         message: feedbackForm.message.value,
-    //     }, constraints));
-    // });
 }
 
 
@@ -164,30 +166,30 @@ const start = () => {
 
     // Create and mount the thumbnails slider.
     const thumbnailSlider = new Splide('#thumbnailSlider', {
-        rewind: true,
-        fixedWidth: 100,
-        fixedHeight: 64,
-        isNavigation: true,
-        gap: 10,
-        focus: 'center',
-        pagination: false,
-        cover: true,
+        rewind : true,
+        fixedWidth : 100,
+        fixedHeight : 64,
+        isNavigation : true,
+        gap : 10,
+        focus : 'center',
+        pagination : false,
+        cover : true,
         // lazyLoad: 'sequential',
-        breakpoints: {
-            '600': {
-                fixedWidth: 66,
-                fixedHeight: 40,
+        breakpoints : {
+            '600' : {
+                fixedWidth : 66,
+                fixedHeight : 40,
             }
         }
     }).mount();
 
     // Create the main slider.
     const primarySlider = new Splide('#primarySlider', {
-        type: 'fade',
-        heightRatio: 0.5,
-        pagination: false,
-        arrows: false,
-        cover: true,
+        type : 'fade',
+        heightRatio : 0.5,
+        pagination : false,
+        arrows : false,
+        cover : true,
         // lazyLoad: 'nearby',
     });
 
@@ -201,7 +203,7 @@ const start = () => {
         "scroll", "resize");
     checkScroll();
 
-    httpGetJSON("https://picsum.photos/v2/list", data => {
+    ajaxGetJSON("https://picsum.photos/v2/list", data => {
         for (const imageId in data) {
             const {id} = data[imageId];
             primarySlider.add(`<li class="splide__slide"><img src="${getPicsumUrl(id, 1110, 555)}" alt="image ${id}"></li>`);

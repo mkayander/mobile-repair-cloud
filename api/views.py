@@ -19,6 +19,13 @@ class FeedbackRequestViewSet(viewsets.ModelViewSet):
     queryset = FeedbackRequest.objects.all()
     serializer_class = FeedbackRequestSerializer
 
+    def create(self, request, *args, **kwargs):
+        try:
+            request.data["visitor"] = Visitor.objects.get(session_id=request.session.session_key).id
+        except Visitor.DoesNotExist:
+            print("Failed to get the visitor instance")
+        return super().create(request, *args, **kwargs)
+
 
 @api_view(["GET"])
 def acquire_visitor_identity(request):

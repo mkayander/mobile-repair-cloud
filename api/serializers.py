@@ -9,7 +9,7 @@ class VisitorSerializer(serializers.HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class FeedbackRequestSerializer(serializers.HyperlinkedModelSerializer):
+class FeedbackRequestSerializer(serializers.ModelSerializer):
     class Meta:
         model = FeedbackRequest
         fields = '__all__'

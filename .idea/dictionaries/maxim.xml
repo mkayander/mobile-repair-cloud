@@ -3,10 +3,13 @@
     <words>
       <w>cdnjs</w>
       <w>cloudflare</w>
+      <w>csrfmiddlewaretoken</w>
+      <w>csrftoken</w>
       <w>googleapis</w>
       <w>mixins</w>
       <w>navbar</w>
       <w>phonenumber</w>
+      <w>picsum</w>
       <w>roboto</w>
       <w>splide</w>
       <w>transparentize</w>
