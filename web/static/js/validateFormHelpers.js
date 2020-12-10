@@ -1,3 +1,5 @@
+"use strict";
+
 const isString = obj => {
     return (Object.prototype.toString.call(obj) === '[object String]');
 };
@@ -44,7 +46,7 @@ const appendError = (msgContainer, error) => {
 
 const resetFormGroup = formGroup => {
     // Remove the success and error classes
-    formGroup.querySelector("input").classList.remove("is-invalid");
+    formGroup.querySelector(".form-control").classList.remove("is-invalid");
     // and remove any old messages
     forEach(formGroup.querySelectorAll(".messages > .error"), el => {
         el.parentNode.removeChild(el);
