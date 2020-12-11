@@ -1,5 +1,7 @@
 "use strict";
 
+import {} from "web/static/js/validateFormHelpers"
+
 const navbar = document.querySelector(".navbar");
 
 function addListeners(element, listener, ...eventNames) {
