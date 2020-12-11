@@ -1,8 +1,8 @@
 "use strict";
 
-const isString = obj => {
+export function isString(obj) {
     return (Object.prototype.toString.call(obj) === '[object String]');
-};
+}
 
 // Simple forEach loop that should work in IE browsers too
 const forEach = (list, fn) => {
