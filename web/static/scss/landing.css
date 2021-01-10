@@ -35,6 +35,11 @@ a:hover {
   color: inherit;
 }
 
+h1, h2, h3, h4 {
+  padding: 0;
+  margin: 0;
+}
+
 ul {
   list-style: none;
   padding: 0;
@@ -47,6 +52,7 @@ input, button {
 
 .navbar-top {
   padding: 1rem 0;
+  font-size: 20px;
 }
 .navbar-top .container {
   display: flex;
@@ -72,6 +78,9 @@ input, button {
 }
 .navbar-top .nav-brand {
   display: none;
+  font-size: inherit;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
 }
 .navbar-top .btn-sidebar {
   display: none;
@@ -97,6 +106,16 @@ input, button {
     display: block;
   }
 }
+@media screen and (max-width: 768px) {
+  .navbar-top {
+    font-size: 20px;
+  }
+}
+@media screen and (max-width: 542px) {
+  .navbar-top .nav-brand {
+    display: none;
+  }
+}
 
 .navbar-top.scrolled {
   background: #007ea7;
@@ -114,6 +133,7 @@ input, button {
   margin-right: 10px;
 }
 .telephone h4 {
+  font-size: inherit;
   margin: 0 0;
   padding: 0 0;
 }
@@ -273,6 +293,10 @@ input, button {
 }
 .gallery-section #primarySlider {
   min-height: 10rem;
+}
+.gallery-section #primarySlider img {
+  width: 100%;
+  object-fit: scale-down;
 }
 .gallery-section #thumbnailsSlider {
   min-height: 2rem;
