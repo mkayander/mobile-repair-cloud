@@ -1,6 +1,6 @@
 "use strict";
 
-export function isString(obj) {
+function isString(obj) {
     return (Object.prototype.toString.call(obj) === '[object String]');
 }
 
