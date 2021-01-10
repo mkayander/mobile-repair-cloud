@@ -2,7 +2,19 @@
 
 // import {} from "/static/js/validateFormHelpers"
 
-const navbar = document.querySelector(".navbar");
+const navbar = document.querySelector("#navbar");
+
+/* Set the width of the side navigation to 250px */
+function openNav() {
+    document.getElementById("sideBar").classList.add("expanded", "shadow-lg");
+    document.getElementById("overlay").classList.add("active");
+}
+
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+    document.getElementById("sideBar").classList.remove("expanded", "shadow-lg");
+    document.getElementById("overlay").classList.remove("active");
+}
 
 function addListeners(element, listener, ...eventNames) {
     for (let i = 0, iLen = eventNames.length; i < iLen; i++) {

@@ -6,6 +6,9 @@ $green-color: rgb(74, 220, 58);
 $primary-color: #00a8e8;
 $primary-dark-color: #007ea7;
 
+// Width Values
+$lg: 991px;
+
 // Mixins
 @mixin transition($duration) {
   -webkit-transition: all $duration ease-out;
@@ -34,6 +37,16 @@ $primary-dark-color: #007ea7;
   flex-grow: 1;
 }
 
+@mixin padding-vertical($padding) {
+  padding-top: $padding;
+  padding-bottom: $padding;
+}
+
+@mixin padding-horizontal($padding) {
+  padding-left: $padding;
+  padding-right: $padding;
+}
+
 // Base Classes
 %transition-default {
   @include transition(0.3s)
@@ -55,13 +68,102 @@ body {
   color: $text-color-light;
 }
 
-
-// --- NAVBAR ---
-.navbar {
-  @extend %transition-default;
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
 }
 
-.navbar.scrolled {
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input, button {
+  font: inherit;
+}
+
+
+// --- NAVBAR ---
+.navbar-top {
+  @extend %transition-default;
+  padding: 1rem 0;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  ul {
+    display: flex;
+    justify-content: space-between;
+    @include flex-fit-parent;
+  }
+
+  ul > li {
+  }
+
+  ul > li > a {
+    @extend %transition-default;
+    display: block;
+    padding: .5rem .5rem;
+    opacity: 0.7;
+  }
+
+  a:hover {
+    text-decoration: none;
+    opacity: 1;
+  }
+
+  .nav-brand {
+    display: none;
+  }
+
+  .btn-sidebar {
+    @extend %transition-default;
+    display: none;
+    color: inherit;
+    font-size: 20px;
+    opacity: 0.7;
+  }
+
+  .btn-sidebar:hover {
+    opacity: 1;
+  }
+
+  .btn-sidebar:focus {
+    border: none;
+    outline: none;
+  }
+
+  @media screen and (max-width: $lg) {
+    ul {
+      display: none;
+    }
+
+    .nav-brand {
+      display: block;
+    }
+
+    .btn-sidebar {
+      display: block;
+    }
+  }
+}
+
+.navbar-top.scrolled {
   background: $primary-dark-color;
   padding: 8px 16px;
 }
@@ -79,6 +181,7 @@ body {
 
   h4 {
     margin: 0 0;
+    padding: 0 0;
   }
 
   &:hover {
@@ -86,6 +189,87 @@ body {
     color: $green-color;
   }
 }
+
+
+// --- SIDE BAR ---
+/* The side navigation menu */
+.side-nav {
+  @include transition(0.5s);
+  height: 100%; /* 100% Full-height */
+  width: 50%;
+  //width: 0; /* 0 width - change this with JavaScript */
+  transform: translateX(-100%);
+  position: fixed; /* Stay in place */
+  z-index: 9900; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: $background-color;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 60px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+
+  a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+
+  /* When you mouse over the navigation links, change their color */
+  a:hover {
+    color: #f1f1f1;
+  }
+
+  /* Position and style the close button (top right corner) */
+  .close-side {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}
+
+.side-nav.expanded {
+  transform: translateX(0);
+}
+
+// --- DARK OVERLAY ---
+
+#overlay {
+  @extend %transition-default;
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 0.7;
+  pointer-events: all;
+}
+
+///* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+//#main {
+//  transition: margin-left .5s;
+//  padding: 20px;
+//}
+//
+///* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+//@media screen and (max-height: 450px) {
+//  .sidenav {
+//    padding-top: 15px;
+//  }
+//  .sidenav a {
+//    font-size: 18px;
+//  }
+//}
 
 
 // --- TOP SECTION ---
@@ -280,16 +464,35 @@ body {
 
 // --- FEEDBACK SECTION ---
 .feedback-section {
+  position: relative;
   padding: 2.5rem 0;
   //background-image: url("/img/space-bg.jpg");
   background-image: url("../img/kompjuternaja-i-mobilnaja-tehnika-2.png");
-  background-size: 280% auto;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
 
-  :before {
+  &:after {
     content: "";
-    background: linear-gradient(to right, #4286f4 0%, #42e2f4 100%);
+    position: absolute;
+    //background: linear-gradient(120deg, #4286f4 0%, #42e2f4 100%);
+    background: linear-gradient(-120deg, #42e2f4, #4286f4);
+    //mix-blend-mode: color;
+    //mix-blend-mode: hard-light;
+    //mix-blend-mode: hue;
+    display: block;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    opacity: .75;
+    z-index: -1;
   }
+
+  //* {
+  //  z-index: 100;
+  //}
 
   .feedback-background {
     position: absolute;

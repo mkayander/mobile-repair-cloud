@@ -1,4 +1,4 @@
-.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, .navbar {
+.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, #overlay, .navbar-top .btn-sidebar, .navbar-top ul > li > a, .navbar-top {
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -19,7 +19,86 @@ body {
   color: #f8f9fa;
 }
 
-.navbar.scrolled {
+button {
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+input, button {
+  font: inherit;
+}
+
+.navbar-top {
+  padding: 1rem 0;
+}
+.navbar-top .container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.navbar-top ul {
+  display: flex;
+  justify-content: space-between;
+  -ms-flex-preferred-size: 0;
+  flex-basis: auto;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.navbar-top ul > li > a {
+  display: block;
+  padding: 0.5rem 0.5rem;
+  opacity: 0.7;
+}
+.navbar-top a:hover {
+  text-decoration: none;
+  opacity: 1;
+}
+.navbar-top .nav-brand {
+  display: none;
+}
+.navbar-top .btn-sidebar {
+  display: none;
+  color: inherit;
+  font-size: 20px;
+  opacity: 0.7;
+}
+.navbar-top .btn-sidebar:hover {
+  opacity: 1;
+}
+.navbar-top .btn-sidebar:focus {
+  border: none;
+  outline: none;
+}
+@media screen and (max-width: 991px) {
+  .navbar-top ul {
+    display: none;
+  }
+  .navbar-top .nav-brand {
+    display: block;
+  }
+  .navbar-top .btn-sidebar {
+    display: block;
+  }
+}
+
+.navbar-top.scrolled {
   background: #007ea7;
   padding: 8px 16px;
 }
@@ -36,10 +115,77 @@ body {
 }
 .telephone h4 {
   margin: 0 0;
+  padding: 0 0;
 }
 .telephone:hover {
   cursor: pointer;
   color: #4adc3a;
+}
+
+/* The side navigation menu */
+.side-nav {
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  height: 100%;
+  /* 100% Full-height */
+  width: 50%;
+  transform: translateX(-100%);
+  position: fixed;
+  /* Stay in place */
+  z-index: 9900;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: #00171f;
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 60px;
+  /* Place content 60px from the top */
+  transition: 0.5s;
+  /* 0.5 second transition effect to slide in the sidenav */
+  /* When you mouse over the navigation links, change their color */
+  /* Position and style the close button (top right corner) */
+}
+.side-nav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.side-nav a:hover {
+  color: #f1f1f1;
+}
+.side-nav .close-side {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.side-nav.expanded {
+  transform: translateX(0);
+}
+
+#overlay {
+  display: block;
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  height: 100%;
+  background: black;
+  opacity: 0;
+  pointer-events: none;
+}
+
+#overlay.active {
+  opacity: 0.7;
+  pointer-events: all;
 }
 
 .top-section {
@@ -182,14 +328,25 @@ body {
 }
 
 .feedback-section {
+  position: relative;
   padding: 2.5rem 0;
   background-image: url("../img/kompjuternaja-i-mobilnaja-tehnika-2.png");
-  background-size: 280% auto;
+  z-index: 1;
+  background-size: cover;
+  background-position: center;
   background-attachment: fixed;
 }
-.feedback-section :before {
+.feedback-section:after {
   content: "";
-  background: linear-gradient(to right, #4286f4 0%, #42e2f4 100%);
+  position: absolute;
+  background: linear-gradient(-120deg, #42e2f4, #4286f4);
+  display: block;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.75;
+  z-index: -1;
 }
 .feedback-section .feedback-background {
   position: absolute;
