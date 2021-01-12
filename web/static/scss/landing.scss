@@ -215,15 +215,17 @@ input, button {
 /* The side navigation menu */
 .side-nav {
   @include transition(0.5s);
-  height: 100%; /* 100% Full-height */
+  height: 100vh; /* 100% Full-height */
   width: 50%;
+  min-width: 16rem;
   //width: 0; /* 0 width - change this with JavaScript */
   transform: translateX(-100%);
   position: fixed; /* Stay in place */
   z-index: 9900; /* Stay on top */
   top: 0; /* Stay at the top */
   left: 0;
-  background-color: $background-color;
+  //background-color: $background-color;
+  background-image: linear-gradient(to right top, #00171f, #031f2a, #032836, #023242, #013b4e);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
@@ -232,18 +234,23 @@ input, button {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
-    color: #818181;
+    color: #f1f1f1;
     display: block;
     transition: 0.3s;
   }
 
+  a.active {
+    color: white;
+    border-bottom: 4px solid white;
+  }
+
   /* When you mouse over the navigation links, change their color */
   a:hover {
-    color: #f1f1f1;
+    color: #ffffff;
   }
 
   /* Position and style the close button (top right corner) */
-  .close-side {
+  .btn-close-sidebar {
     position: absolute;
     top: 0;
     right: 25px;
@@ -264,7 +271,7 @@ input, button {
   position: fixed;
   z-index: 2000;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background: black;
   opacity: 0;
   pointer-events: none;
@@ -493,10 +500,10 @@ input, button {
   padding: 2.5rem 0;
   //background-image: url("/img/space-bg.jpg");
   background-image: url("../img/kompjuternaja-i-mobilnaja-tehnika-2.png");
-  z-index: 1;
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
+  z-index: 1;
 
   &:after {
     content: "";
