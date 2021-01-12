@@ -1,9 +1,10 @@
 "use strict";
 
+// --- CONSTANTS ---
+const SECTION_Y_OFFSET = 150;
+
+
 // import {} from "/static/js/validateFormHelpers"
-
-const navbar = document.querySelector("#navbar");
-
 /* Set the width of the side navigation to 250px */
 function openNav() {
     document.getElementById("sideBar").classList.add("expanded", "shadow-lg");
@@ -119,14 +120,14 @@ function initFeedbackForm() {
     });
 
     const constraints = {
-        email: {
+        email : {
             // presence: {
             //     allowEmpty: false,
             //     message: "Пожалуйста, введите адрес электронной почты"
             // },
             // email: true
-            email: {
-                message: "введён некорректно"
+            email : {
+                message : "введён некорректно"
             }
         },
         // phone: {
@@ -138,10 +139,10 @@ function initFeedbackForm() {
         //         message: "Неверный формат номера телефона. Прим.: +78004919067"
         //     }
         // },
-        theme: {
+        theme : {
             // presence: true
         },
-        message: {
+        message : {
             // presence: true
         }
     };
@@ -163,24 +164,120 @@ function initFeedbackForm() {
 
 }
 
+function initSmoothSectionScrolls() {
+//  little hack to detect if the user is on ie 11
+    const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+    // get all the links with an ID that starts with 'sectionLink'
+    const listOfLinks = document.querySelectorAll("a[href^='#");
+    console.log(listOfLinks);
+    // loop over all the links
+    listOfLinks.forEach(function (link) {
+        // listen for a click
+        link.addEventListener('click', (ev) => {
+            ev.preventDefault();
+            // toggle highlight on and off when we click a link
+            // listOfLinks.forEach((link) => {
+            //     if (link.classList.contains('highlighted')) {
+            //         link.classList.remove('highlighted');
+            //     }
+            // });
+            // link.classList.add('highlighted');
+            // get the element where to scroll
+            // let ref = link.href.split('#sectionLink');
+            let ref = link.hash;
+            // ref = "#section" + ref[1];
+            // ie 11 does not support smooth scroll, so we will simply scroll
+            if (isIE11) {
+                window.scrollTo(0, document.querySelector(ref).offsetTop - 50);
+            } else {
+                window.scroll({
+                    behavior : 'smooth',
+                    left : 0,
+                    // top gets the distance from the top of the page of our target element
+                    top : document.querySelector(ref).offsetTop - 50
+                });
+            }
+        });
+    });
+}
 
 function initScrollListeners() {
-    const topSection = document.getElementById("top");
-    // const priceSection = document.getElementById("top");
-    const gallerySection = document.getElementById("gallery");
-    const contactsSection = document.getElementById("contacts");
-    const feedbackSection = document.getElementById("feedback");
+    /**
+     * @type {HTMLAnchorElement[]}
+     */
+    const sidebarNavs = Array.from(document.querySelectorAll("#sidebarNav > a"));
 
+    console.log(sidebarNavs);
+
+    // Handy nav nodes data structure
+    class NavNode {
+        /**
+         *
+         * @param {HTMLAnchorElement} anchor
+         * @param {HTMLElement} section
+         */
+        constructor(anchor, section) {
+            this.navAnchor = anchor;
+            this.section = section;
+        }
+
+        /**
+         * @param {NavNode} other
+         * @returns {boolean}
+         */
+        equals(other) {
+            return other && (this === other || (this.navAnchor === other.navAnchor && this.section === other.section));
+        }
+    }
+
+    const navNodes = sidebarNavs
+        .filter((nav) => nav.hash || nav.hash.length > 1)
+        .map((nav) => {
+            return new NavNode(nav, document.getElementById(nav.hash.substring(1)));
+            // return ({
+            //     navAnchor : nav,
+            //     section : document.getElementById(nav.hash.substring(1))
+            // });
+        });
+
+    console.log(navNodes);
+
+    /** @type {NavNode} */
+    let lastActiveNav = null;
+
+    /** @param {NavNode} navNode */
+    const setActiveSection = (navNode) => {
+        if (navNode.equals(lastActiveNav)) return;
+
+        if (lastActiveNav) {
+            lastActiveNav.navAnchor.classList.remove("active");
+        }
+        navNode.navAnchor.classList.add("active");
+        lastActiveNav = navNode;
+    };
+
+    const navbar = document.querySelector("#navbar");
     const checkScroll = () => {
+        // Navbar scrolled style
         const navAtTop = navbar.offsetHeight / 2; //The point where the navbar changes in px
-
         if (window.scrollY > navAtTop) {
-            // $('.navbar').addClass("scrolled");
             navbar.classList.add("scrolled", "shadow");
         } else {
-            // $('.navbar').removeClass("scrolled");
             navbar.classList.remove("scrolled", "shadow");
         }
+
+        // Current nav section highlight
+        let target = 0;
+        for (let i = 0; i < navNodes.length; i++) {
+            if (window.scrollY >= navNodes[i].section.offsetTop - SECTION_Y_OFFSET) {
+                target = i;
+            } else if (i !== navNodes.length - 1) {
+                setActiveSection(navNodes[target]);
+                return;
+            }
+        }
+
+        setActiveSection(navNodes[target]);
     };
 
     addListeners(window,
@@ -198,35 +295,37 @@ const start = () => {
 
     // Create and mount the thumbnails slider.
     const thumbnailSlider = new Splide('#thumbnailSlider', {
-        rewind: true,
-        fixedWidth: 100,
-        fixedHeight: 64,
-        isNavigation: true,
-        gap: 10,
-        focus: 'center',
-        pagination: false,
-        cover: true,
+        rewind : true,
+        fixedWidth : 100,
+        fixedHeight : 64,
+        isNavigation : true,
+        gap : 10,
+        focus : 'center',
+        pagination : false,
+        cover : true,
         // lazyLoad: 'sequential',
-        breakpoints: {
-            '600': {
-                fixedWidth: 66,
-                fixedHeight: 40,
+        breakpoints : {
+            '600' : {
+                fixedWidth : 66,
+                fixedHeight : 40,
             }
         }
     }).mount();
 
     // Create the main slider.
     const primarySlider = new Splide('#primarySlider', {
-        type: 'fade',
-        heightRatio: 0.5,
-        pagination: false,
-        arrows: false,
-        cover: true,
+        type : 'fade',
+        heightRatio : 0.5,
+        pagination : false,
+        arrows : false,
+        cover : true,
         // lazyLoad: 'nearby',
     });
 
     // Set the thumbnails slider as a sync target and then call mount.
     primarySlider.sync(thumbnailSlider).mount();
+
+    initSmoothSectionScrolls();
 
     initScrollListeners();
 

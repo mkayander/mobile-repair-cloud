@@ -174,13 +174,26 @@ input, button {
   padding: 8px 8px 8px 32px;
   text-decoration: none;
   font-size: 25px;
-  color: #f1f1f1;
+  color: #bebebe;
   display: block;
   transition: 0.3s;
 }
+.side-nav a span {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border-bottom: 0 solid #00171f;
+}
 .side-nav a.active {
   color: white;
-  border-bottom: 4px solid white;
+}
+.side-nav a.active span {
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  border-bottom: 2px solid white;
 }
 .side-nav a:hover {
   color: #ffffff;
