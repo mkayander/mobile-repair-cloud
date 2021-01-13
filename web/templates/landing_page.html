@@ -65,20 +65,13 @@
     <!-- <a class="navbar-brand" href="#"></a> -->
     <div class="container">
         <h4 class="nav-brand">Ремонт в Подольске</h4>
-        <ul>
-            <li class="">
-                <a class="" href="#">О компании</a>
-            </li>
-            <li class="">
-                <a class="" href="#">Цены на ремонт</a>
-            </li>
-            <li class="">
-                <a class="" href="#">Расположение</a>
-            </li>
-            <li class="">
-                <a class="" href="#">Контакты</a>
-            </li>
-        </ul>
+        <nav>
+            <a class="" href="#top"><span>О компании</span></a>
+            {#                <a class="" href="#">Цены на ремонт</a>#}
+            <a class="" href="#gallery"><span>Галерея</span></a>
+            <a class="" href="#contacts"><span>Контакты</span></a>
+            <a class="" href="#feedback"><span>Оставить заявку</span></a>
+        </nav>
         <a class="telephone" href="tel:+78005553535">
             <img src="{% static 'svg/telephone icon.svg' %}" alt="Call"/>
             <h4>+7 800 555-35-35</h4>
@@ -104,7 +97,7 @@
 <div id="overlay" onclick="closeNav()"></div>
 
 <!-- TOP SECTION -->
-<section id="top" class="top-section">
+<section id="top" data-nav="true" class="top-section">
     <img class="top-background-svg" draggable="false" src="{% static 'svg/Background.svg' %}" alt="Background"/>
     <div class="container">
         <div class="hero-space">
@@ -184,7 +177,7 @@
 </section>
 
 <!-- GALLERY SECTION -->
-<section id="gallery" class="gallery-section">
+<section id="gallery" data-nav="true" class="gallery-section">
     <div class="container" data-aos="fade-right">
         <h1 class="mb-4 text-center">Результаты работ</h1>
         <div id="primarySlider" class="splide mb-3 shadow">
@@ -203,7 +196,7 @@
 </section>
 
 <!-- CONTACTS SECTION -->
-<section id="contacts" class="contacts-section">
+<section id="contacts" data-nav="true" class="contacts-section">
     <div class="container" data-aos="fade-left">
         <h1 class="pb-4 text-center">Контакты</h1>
         <div class="maps">
@@ -242,7 +235,7 @@
 </section>
 
 <!-- FEEDBACK SECTION -->
-<section id="feedback" class="feedback-section">
+<section id="feedback" data-nav="true" class="feedback-section">
     <!--    <img class="feedback-background" src="img/night-sky-569319_1920.jpg" alt="Feedback background">-->
     <div class="container">
         <h1>Обратная связь</h1>
@@ -262,7 +255,7 @@
                         <input type="tel" class="form-control col-sm-7" id="phone" name="phone">
                         <div class="messages"></div>
                     </div>
-                    <small id="inputHelp" class="form-text text-muted">При желании, вы можете указать только один из
+                    <small id="inputHelp" class="form-text text-muted">При желании, Вы можете указать только один из
                         способов связи</small>
 
                     <br>

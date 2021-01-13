@@ -100,9 +100,14 @@ input, button {
   font: inherit;
 }
 
+.container {
+  @extend %transition-default;
+}
+
 
 // --- NAVBAR ---
 .navbar-top {
+  $navBorderWidth: 3px;
   @extend %transition-default;
   padding: 1rem 0;
   font-size: 20px;
@@ -113,31 +118,49 @@ input, button {
     justify-content: space-between;
   }
 
-  ul {
+  nav {
     display: flex;
     justify-content: space-between;
     @include flex-fit-parent;
   }
 
-  ul > li {
-  }
-
-  ul > li > a {
+  nav > a {
     @extend %transition-default;
     display: block;
     padding: .5rem .5rem;
-    opacity: 0.7;
+    border-bottom: $navBorderWidth solid rgba(255, 255, 255, 0);
+
+    &:hover {
+      text-decoration: none;
+
+      span {
+        opacity: 1;
+      }
+    }
+
+    &.active {
+      border-bottom: $navBorderWidth solid rgba(255, 255, 255, 1);
+
+      span {
+        opacity: 1;
+      }
+    }
   }
 
-  a:hover {
-    text-decoration: none;
-    opacity: 1;
+  nav > a > span {
+    @extend %transition-default;
+    opacity: 0.7;
   }
 
   .nav-brand {
     display: none;
     font-size: inherit;
     @include padding-vertical(0.5rem);
+  }
+
+  &.scrolled {
+    background: $primary-dark-color;
+    padding: 0 0;
   }
 
   .btn-sidebar {
@@ -157,8 +180,34 @@ input, button {
     outline: none;
   }
 
+  .telephone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 2rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    margin-bottom: $navBorderWidth;
+    color: white;
+
+    img {
+      margin-right: 10px;
+    }
+
+    h4 {
+      font-size: inherit;
+      margin: 0 0;
+      padding: 0 0;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: $green-color;
+    }
+  }
+
   @media screen and (max-width: $lg) {
-    ul {
+    nav {
       display: none;
     }
 
@@ -179,34 +228,6 @@ input, button {
     .nav-brand {
       display: none;
     }
-  }
-}
-
-.navbar-top.scrolled {
-  background: $primary-dark-color;
-  padding: 8px 16px;
-}
-
-.telephone {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2rem;
-  color: white;
-
-  img {
-    margin-right: 10px;
-  }
-
-  h4 {
-    font-size: inherit;
-    margin: 0 0;
-    padding: 0 0;
-  }
-
-  &:hover {
-    cursor: pointer;
-    color: $green-color;
   }
 }
 
@@ -293,22 +314,6 @@ input, button {
   pointer-events: all;
 }
 
-///* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-//#main {
-//  transition: margin-left .5s;
-//  padding: 20px;
-//}
-//
-///* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-//@media screen and (max-height: 450px) {
-//  .sidenav {
-//    padding-top: 15px;
-//  }
-//  .sidenav a {
-//    font-size: 18px;
-//  }
-//}
-
 
 // --- TOP SECTION ---
 .top-section {
@@ -333,13 +338,6 @@ input, button {
     margin: 16% 0 0;
   }
 }
-
-//.top-section {
-//  background-image: url("/svg/Background.svg");
-//  min-height: 400px;
-//  top: 40px;
-//  left: 40px;
-//}
 
 .top-smartphone {
   width: 30%;

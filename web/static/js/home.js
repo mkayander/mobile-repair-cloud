@@ -169,7 +169,6 @@ function initSmoothSectionScrolls() {
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     // get all the links with an ID that starts with 'sectionLink'
     const listOfLinks = document.querySelectorAll("a[href^='#");
-    console.log(listOfLinks);
     // loop over all the links
     listOfLinks.forEach(function (link) {
         // listen for a click
@@ -202,23 +201,30 @@ function initSmoothSectionScrolls() {
 }
 
 function initScrollListeners() {
-    /**
-     * @type {HTMLAnchorElement[]}
-     */
-    const sidebarNavs = Array.from(document.querySelectorAll("#sidebarNav > a"));
+    const sections = document.querySelectorAll("[data-nav]");
+    console.log(sections);
 
-    console.log(sidebarNavs);
-
-    // Handy nav nodes data structure
     class NavNode {
         /**
          *
-         * @param {HTMLAnchorElement} anchor
+         * @param {HTMLAnchorElement[]} anchors
          * @param {HTMLElement} section
          */
-        constructor(anchor, section) {
-            this.navAnchor = anchor;
+        constructor(anchors, section) {
+            this.navAnchors = anchors;
             this.section = section;
+        }
+
+        activate() {
+            this.navAnchors.forEach((anchor) => {
+                anchor.classList.add("active");
+            });
+        }
+
+        deactivate() {
+            this.navAnchors.forEach((anchor) => {
+                anchor.classList.remove("active");
+            });
         }
 
         /**
@@ -226,33 +232,33 @@ function initScrollListeners() {
          * @returns {boolean}
          */
         equals(other) {
-            return other && (this === other || (this.navAnchor === other.navAnchor && this.section === other.section));
+            return other && (this === other || (this.navAnchors === other.navAnchors && this.section === other.section));
         }
     }
 
-    const navNodes = sidebarNavs
-        .filter((nav) => nav.hash || nav.hash.length > 1)
-        .map((nav) => {
-            return new NavNode(nav, document.getElementById(nav.hash.substring(1)));
-            // return ({
-            //     navAnchor : nav,
-            //     section : document.getElementById(nav.hash.substring(1))
-            // });
-        });
-
-    console.log(navNodes);
+    /** @type {NavNode[]} */
+    let navNodes = [];
+    forEach(sections, (section) => {
+        navNodes.push(new NavNode(
+            Array.from(document.querySelectorAll(`a[href='#${section.id}']`)),
+            section
+        ));
+    });
 
     /** @type {NavNode} */
     let lastActiveNav = null;
 
-    /** @param {NavNode} navNode */
+    /**
+     * @param {NavNode} navNode
+     */
     const setActiveSection = (navNode) => {
         if (navNode.equals(lastActiveNav)) return;
 
         if (lastActiveNav) {
-            lastActiveNav.navAnchor.classList.remove("active");
+            lastActiveNav.deactivate();
         }
-        navNode.navAnchor.classList.add("active");
+
+        navNode.activate();
         lastActiveNav = navNode;
     };
 
@@ -326,6 +332,8 @@ const start = () => {
     primarySlider.sync(thumbnailSlider).mount();
 
     initSmoothSectionScrolls();
+
+    // initScrollListeners();
 
     initScrollListeners();
 

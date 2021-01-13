@@ -1,4 +1,4 @@
-.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, #overlay, .navbar-top .btn-sidebar, .navbar-top ul > li > a, .navbar-top {
+.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, #overlay, .navbar-top .btn-sidebar, .navbar-top nav > a > span, .navbar-top nav > a, .navbar-top, .container {
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -59,7 +59,7 @@ input, button {
   flex-direction: row;
   justify-content: space-between;
 }
-.navbar-top ul {
+.navbar-top nav {
   display: flex;
   justify-content: space-between;
   -ms-flex-preferred-size: 0;
@@ -67,20 +67,35 @@ input, button {
   -ms-flex-positive: 1;
   flex-grow: 1;
 }
-.navbar-top ul > li > a {
+.navbar-top nav > a {
   display: block;
   padding: 0.5rem 0.5rem;
-  opacity: 0.7;
+  border-bottom: 3px solid rgba(255, 255, 255, 0);
 }
-.navbar-top a:hover {
+.navbar-top nav > a:hover {
   text-decoration: none;
+}
+.navbar-top nav > a:hover span {
   opacity: 1;
+}
+.navbar-top nav > a.active {
+  border-bottom: 3px solid white;
+}
+.navbar-top nav > a.active span {
+  opacity: 1;
+}
+.navbar-top nav > a > span {
+  opacity: 0.7;
 }
 .navbar-top .nav-brand {
   display: none;
   font-size: inherit;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.navbar-top.scrolled {
+  background: #007ea7;
+  padding: 0 0;
 }
 .navbar-top .btn-sidebar {
   display: none;
@@ -95,8 +110,30 @@ input, button {
   border: none;
   outline: none;
 }
+.navbar-top .telephone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-left: 2rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  margin-bottom: 3px;
+  color: white;
+}
+.navbar-top .telephone img {
+  margin-right: 10px;
+}
+.navbar-top .telephone h4 {
+  font-size: inherit;
+  margin: 0 0;
+  padding: 0 0;
+}
+.navbar-top .telephone:hover {
+  cursor: pointer;
+  color: #4adc3a;
+}
 @media screen and (max-width: 991px) {
-  .navbar-top ul {
+  .navbar-top nav {
     display: none;
   }
   .navbar-top .nav-brand {
@@ -115,31 +152,6 @@ input, button {
   .navbar-top .nav-brand {
     display: none;
   }
-}
-
-.navbar-top.scrolled {
-  background: #007ea7;
-  padding: 8px 16px;
-}
-
-.telephone {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 2rem;
-  color: white;
-}
-.telephone img {
-  margin-right: 10px;
-}
-.telephone h4 {
-  font-size: inherit;
-  margin: 0 0;
-  padding: 0 0;
-}
-.telephone:hover {
-  cursor: pointer;
-  color: #4adc3a;
 }
 
 /* The side navigation menu */
