@@ -324,6 +324,18 @@ input, button {
     display: flex;
     justify-content: space-between;
     padding-top: 8rem;
+
+    .hero-text {
+      margin-right: 5rem;
+
+      @media (max-width: $lg) {
+        background: #00a8e8;
+        border-radius: 12px;
+        padding: 1rem;
+        height: auto;
+        margin-bottom: auto;
+      }
+    }
   }
 
   .top-background-svg {

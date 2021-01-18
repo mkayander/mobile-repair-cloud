@@ -246,6 +246,18 @@ input, button {
   justify-content: space-between;
   padding-top: 8rem;
 }
+.top-section .hero-space .hero-text {
+  margin-right: 5rem;
+}
+@media (max-width: 991px) {
+  .top-section .hero-space .hero-text {
+    background: #00a8e8;
+    border-radius: 12px;
+    padding: 1rem;
+    height: auto;
+    margin-bottom: auto;
+  }
+}
 .top-section .top-background-svg {
   position: absolute;
   width: 100%;
