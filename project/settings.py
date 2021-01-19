@@ -140,6 +140,10 @@ STATICFILES_DIRS = [
     BASE_DIR / "web/static",
 ]
 
+MEDIA_URL = "/media/"
+
+MEDIA_ROOT = BASE_DIR.joinpath("media")
+
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"

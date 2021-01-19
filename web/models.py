@@ -42,3 +42,12 @@ class FeedbackRequest(TimeModelMixin):
     class Meta:
         verbose_name = "Запрос на обратную связь"
         verbose_name_plural = "Запросы на обратную связь"
+
+
+class GalleryPhoto(TimeModelMixin):
+    image = models.ImageField(verbose_name="Файл фотографии", upload_to="gallery/")
+    description = models.CharField(verbose_name="Описание", max_length=200)
+
+    class Meta:
+        verbose_name = "Фотография галереи"
+        verbose_name_plural = "Фотографии галереи"
