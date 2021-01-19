@@ -4,15 +4,22 @@ from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import VisitorSerializer, FeedbackRequestSerializer
-from web.models import Visitor, FeedbackRequest
+from api.serializers import VisitorSerializer, FeedbackRequestSerializer, GalleryPhotoSerializer
+from web.models import Visitor, FeedbackRequest, GalleryPhoto
 
 
-class VisitorViewSet(mixins.RetrieveModelMixin,
-                     mixins.CreateModelMixin,
-                     viewsets.GenericViewSet):
+class VisitorViewSet(viewsets.GenericViewSet,
+                     mixins.RetrieveModelMixin,
+                     mixins.CreateModelMixin):
     queryset = Visitor.objects.all()
     serializer_class = VisitorSerializer
+
+
+class GalleryViewSet(viewsets.GenericViewSet,
+                     mixins.RetrieveModelMixin,
+                     mixins.ListModelMixin):
+    queryset = GalleryPhoto.objects.all()
+    serializer_class = GalleryPhotoSerializer
 
 
 class FeedbackRequestViewSet(viewsets.ModelViewSet):
