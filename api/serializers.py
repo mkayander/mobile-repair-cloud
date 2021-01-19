@@ -3,7 +3,7 @@ from rest_framework import serializers
 from web.models import Visitor, FeedbackRequest, GalleryPhoto
 
 
-class VisitorSerializer(serializers.HyperlinkedModelSerializer):
+class VisitorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Visitor
         fields = '__all__'
