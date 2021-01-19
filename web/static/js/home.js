@@ -120,14 +120,14 @@ function initFeedbackForm() {
     });
 
     const constraints = {
-        email : {
+        email: {
             // presence: {
             //     allowEmpty: false,
             //     message: "Пожалуйста, введите адрес электронной почты"
             // },
             // email: true
-            email : {
-                message : "введён некорректно"
+            email: {
+                message: "введён некорректно"
             }
         },
         // phone: {
@@ -139,10 +139,10 @@ function initFeedbackForm() {
         //         message: "Неверный формат номера телефона. Прим.: +78004919067"
         //     }
         // },
-        theme : {
+        theme: {
             // presence: true
         },
-        message : {
+        message: {
             // presence: true
         }
     };
@@ -174,15 +174,7 @@ function initSmoothSectionScrolls() {
         // listen for a click
         link.addEventListener('click', (ev) => {
             ev.preventDefault();
-            // toggle highlight on and off when we click a link
-            // listOfLinks.forEach((link) => {
-            //     if (link.classList.contains('highlighted')) {
-            //         link.classList.remove('highlighted');
-            //     }
-            // });
-            // link.classList.add('highlighted');
-            // get the element where to scroll
-            // let ref = link.href.split('#sectionLink');
+
             let ref = link.hash;
             // ref = "#section" + ref[1];
             // ie 11 does not support smooth scroll, so we will simply scroll
@@ -190,10 +182,10 @@ function initSmoothSectionScrolls() {
                 window.scrollTo(0, document.querySelector(ref).offsetTop - 50);
             } else {
                 window.scroll({
-                    behavior : 'smooth',
-                    left : 0,
+                    behavior: 'smooth',
+                    left: 0,
                     // top gets the distance from the top of the page of our target element
-                    top : document.querySelector(ref).offsetTop - 50
+                    top: document.querySelector(ref).offsetTop - 50
                 });
             }
         });
@@ -295,41 +287,62 @@ function initScrollListeners() {
 }
 
 
-// Runs when DOM is ready
-const start = () => {
-    AOS.init();
-
+function initGallery() {
     // Create and mount the thumbnails slider.
     const thumbnailSlider = new Splide('#thumbnailSlider', {
-        rewind : true,
-        fixedWidth : 100,
-        fixedHeight : 64,
-        isNavigation : true,
-        gap : 10,
-        focus : 'center',
-        pagination : false,
-        cover : true,
+        rewind: true,
+        fixedWidth: 100,
+        fixedHeight: 64,
+        isNavigation: true,
+        gap: 10,
+        focus: 'center',
+        pagination: false,
+        cover: true,
         // lazyLoad: 'sequential',
-        breakpoints : {
-            '600' : {
-                fixedWidth : 66,
-                fixedHeight : 40,
+        breakpoints: {
+            '600': {
+                fixedWidth: 66,
+                fixedHeight: 40,
             }
         }
     }).mount();
 
     // Create the main slider.
     const primarySlider = new Splide('#primarySlider', {
-        type : 'fade',
-        heightRatio : 0.5,
-        pagination : false,
-        arrows : false,
-        cover : true,
+        type: 'fade',
+        heightRatio: 0.5,
+        pagination: false,
+        arrows: false,
+        cover: true,
         // lazyLoad: 'nearby',
     });
 
     // Set the thumbnails slider as a sync target and then call mount.
     primarySlider.sync(thumbnailSlider).mount();
+
+    // ajaxGetJSON("https://picsum.photos/v2/list", data => {
+    //     for (const imageId in data) {
+    //         const {id} = data[imageId];
+    //         const mainUrl = getPicsumUrl(id, 1110, 555);
+    //         primarySlider.add(`<li class="splide__slide"><a href="${mainUrl}" target="_blank" rel="noopener noreferrer"><img src="${mainUrl}" alt="image ${id}"></a></li>`);
+    //         thumbnailSlider.add(`<li class="splide__slide"><img src="${getPicsumUrl(id, 100, 64)}" alt="image ${id}"></li>`);
+    //     }
+    // });
+
+    const {protocol, host} = window.location;
+    ajaxGetJSON(`${protocol}//${host}/api/gallery/`, data => {
+        for (const i in data) {
+            const {id, image, description} = data[i];
+            primarySlider.add(`<li class="splide__slide"><a href="${image}" target="_blank" rel="noopener noreferrer"><img src="${image}" alt="${id} ${description}"></a></li>`);
+            thumbnailSlider.add(`<li class="splide__slide"><img src="${image}" alt="${id} ${description}"></li>`);
+        }
+    });
+}
+
+
+// Runs when DOM is ready
+const start = () => {
+    AOS.init();
 
     initSmoothSectionScrolls();
 
@@ -337,14 +350,7 @@ const start = () => {
 
     initScrollListeners();
 
-    ajaxGetJSON("https://picsum.photos/v2/list", data => {
-        for (const imageId in data) {
-            const {id} = data[imageId];
-            const mainUrl = getPicsumUrl(id, 1110, 555);
-            primarySlider.add(`<li class="splide__slide"><a href="${mainUrl}" target="_blank" rel="noopener noreferrer"><img src="${mainUrl}" alt="image ${id}"></a></li>`);
-            thumbnailSlider.add(`<li class="splide__slide"><img src="${getPicsumUrl(id, 100, 64)}" alt="image ${id}"></li>`);
-        }
-    });
+    initGallery();
 
     initFeedbackForm();
 };

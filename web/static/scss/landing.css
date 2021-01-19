@@ -70,6 +70,7 @@ input, button {
 .navbar-top nav > a {
   display: block;
   padding: 0.5rem 0.5rem;
+  margin-top: 3px;
   border-bottom: 3px solid rgba(255, 255, 255, 0);
 }
 .navbar-top nav > a:hover {
@@ -117,7 +118,6 @@ input, button {
   padding-left: 2rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  margin-bottom: 3px;
   color: white;
 }
 .navbar-top .telephone img {

@@ -128,6 +128,7 @@ input, button {
     @extend %transition-default;
     display: block;
     padding: .5rem .5rem;
+    margin-top: $navBorderWidth;
     border-bottom: $navBorderWidth solid rgba(255, 255, 255, 0);
 
     &:hover {
@@ -187,7 +188,7 @@ input, button {
     padding-left: 2rem;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-    margin-bottom: $navBorderWidth;
+    //margin-bottom: $navBorderWidth;
     color: white;
 
     img {

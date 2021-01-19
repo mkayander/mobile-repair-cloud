@@ -19,6 +19,8 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="validate" level="application" />
+    <orderEntry type="library" name="4b7d25246e" level="application" />
+    <orderEntry type="library" name="validate" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
