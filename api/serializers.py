@@ -16,6 +16,9 @@ class FeedbackRequestSerializer(serializers.ModelSerializer):
 
 
 class GalleryPhotoSerializer(serializers.ModelSerializer):
+    height = serializers.IntegerField(source="image.height", read_only=True)
+    width = serializers.IntegerField(source="image.width", read_only=True)
+
     class Meta:
         model = GalleryPhoto
         fields = '__all__'

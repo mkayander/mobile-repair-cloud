@@ -41,6 +41,7 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'rest_framework',
     'phonenumber_field',
+    'imagekit'
     # 'encrypted_fields'
 ]
 

@@ -130,15 +130,15 @@ function initFeedbackForm() {
                 message: "введён некорректно"
             }
         },
-        // phone: {
-        //     presence: {
-        //         allowEmpty: false
-        //     },
-        //     format: {
-        //         pattern: "^(\\+)?7\\d{10,11}$",
-        //         message: "Неверный формат номера телефона. Прим.: +78004919067"
-        //     }
-        // },
+        phone: {
+            // presence: {
+            //     allowEmpty: false
+            // },
+            format: {
+                pattern: "^(\\+)?7\\d{10,11}$",
+                message: "Неверный формат номера телефона. Прим.: +78004919067"
+            }
+        },
         theme: {
             // presence: true
         },
@@ -168,7 +168,7 @@ function initSmoothSectionScrolls() {
 //  little hack to detect if the user is on ie 11
     const isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
     // get all the links with an ID that starts with 'sectionLink'
-    const listOfLinks = document.querySelectorAll("a[href^='#");
+    const listOfLinks = document.querySelectorAll("a[href^='#']");
     // loop over all the links
     listOfLinks.forEach(function (link) {
         // listen for a click
@@ -320,20 +320,21 @@ function initGallery() {
     // Set the thumbnails slider as a sync target and then call mount.
     primarySlider.sync(thumbnailSlider).mount();
 
-    // ajaxGetJSON("https://picsum.photos/v2/list", data => {
-    //     for (const imageId in data) {
-    //         const {id} = data[imageId];
-    //         const mainUrl = getPicsumUrl(id, 1110, 555);
-    //         primarySlider.add(`<li class="splide__slide"><a href="${mainUrl}" target="_blank" rel="noopener noreferrer"><img src="${mainUrl}" alt="image ${id}"></a></li>`);
-    //         thumbnailSlider.add(`<li class="splide__slide"><img src="${getPicsumUrl(id, 100, 64)}" alt="image ${id}"></li>`);
-    //     }
-    // });
+    const renderPrimaryItem = (id, imageUrl, description) => {
+        return (`
+        <li class="splide__slide">
+            <a href="${imageUrl}" target="_blank" rel="noopener noreferrer">
+                <img src="${imageUrl}" alt="${id} ${description}">
+            </a>
+        </li>
+        `).trim()
+    }
 
     const {protocol, host} = window.location;
     ajaxGetJSON(`${protocol}//${host}/api/gallery/`, data => {
         for (const i in data) {
             const {id, image, description} = data[i];
-            primarySlider.add(`<li class="splide__slide"><a href="${image}" target="_blank" rel="noopener noreferrer"><img src="${image}" alt="${id} ${description}"></a></li>`);
+            primarySlider.add(renderPrimaryItem(id, image, description));
             thumbnailSlider.add(`<li class="splide__slide"><img src="${image}" alt="${id} ${description}"></li>`);
         }
     });

@@ -33,11 +33,11 @@ class Visitor(TimeModelMixin):
 
 class FeedbackRequest(TimeModelMixin):
     visitor = models.ForeignKey(Visitor, on_delete=models.SET_NULL, related_name="requests", verbose_name="Посетитель",
-                                null=True)
-    email = models.EmailField(verbose_name="Адрес электронной почты", name="email", null=True)
-    phone = PhoneNumberField(verbose_name="Номер телефона", null=True)
-    subject = models.CharField(verbose_name="Тема", max_length=100, null=True)
-    message = models.TextField(verbose_name="Сообщение", null=True)
+                                null=True, blank=True)
+    email = models.EmailField(verbose_name="Адрес электронной почты", name="email", null=True, blank=True)
+    phone = PhoneNumberField(verbose_name="Номер телефона", null=True, blank=True)
+    subject = models.CharField(verbose_name="Тема", max_length=100, null=True, blank=True)
+    message = models.TextField(verbose_name="Сообщение", null=True, blank=True)
 
     class Meta:
         verbose_name = "Запрос на обратную связь"
