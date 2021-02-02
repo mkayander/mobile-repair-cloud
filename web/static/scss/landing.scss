@@ -8,6 +8,8 @@ $primary-dark-color: #007ea7;
 
 // Width Values
 $lg: 991px;
+$md: 768px;
+$sm: 542px;
 
 // Mixins
 @mixin transition($duration) {
@@ -16,6 +18,25 @@ $lg: 991px;
   -o-transition: all $duration ease-out;
   //-ms-transition: all $duration ease-out;
   transition: all $duration ease-out;
+}
+
+
+@mixin glassmorph($blur: 9px, $transparency: 0.25, $color: #fff, $radius: 10px) {
+  background: transparentize($color, $transparency);
+  box-shadow: 0 8px 32px 0 transparentize($primary-dark-color, 0.75);
+  backdrop-filter: blur($blur);
+  -webkit-backdrop-filter: blur($blur);
+  border-radius: $radius;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@mixin glassmorph-hidden($blur: 9px, $transparency: 0.25, $color: #fff, $radius: 10px) {
+  background: transparentize($color, 1);
+  box-shadow: 0 8px 32px 0 transparentize($primary-dark-color, 1);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  border-radius: $radius;
+  border: 1px solid rgba(255, 255, 255, 0);
 }
 
 @mixin mask($path) {
@@ -109,8 +130,19 @@ input, button {
 .navbar-top {
   $navBorderWidth: 3px;
   @extend %transition-default;
+  @include glassmorph-hidden(10px, 0.75, $primary-dark-color, 0);
+  border: none;
+
   padding: 1rem 0;
   font-size: 20px;
+
+  &.scrolled {
+    @include glassmorph(10px, 0.75, $primary-dark-color, 0);
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    //background: $primary-dark-color;
+    padding: 0 0;
+  }
 
   .container {
     display: flex;
@@ -157,11 +189,6 @@ input, button {
     display: none;
     font-size: inherit;
     @include padding-vertical(0.5rem);
-  }
-
-  &.scrolled {
-    background: $primary-dark-color;
-    padding: 0 0;
   }
 
   .btn-sidebar {
@@ -326,16 +353,39 @@ input, button {
     justify-content: space-between;
     padding-top: 8rem;
 
-    .hero-text {
-      margin-right: 5rem;
+    @media (max-width: $sm) {
+      flex-direction: column-reverse;
 
-      @media (max-width: $lg) {
-        background: #00a8e8;
-        border-radius: 12px;
-        padding: 1rem;
-        height: auto;
-        margin-bottom: auto;
+      & > * {
+
       }
+    }
+
+    .hero-text {
+      @extend %transition-default;
+      margin-right: 5rem;
+      //border-radius: 12px;
+      padding: 1rem;
+      height: auto;
+      margin-bottom: auto;
+
+      @include glassmorph(10px, 0.75, $primary-dark-color, 10px);
+
+      @media (min-width: 1390px) {
+        background: rgba(255, 255, 255, 0);
+        backdrop-filter: blur(0);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0);
+        border: 1px solid rgba(255, 255, 255, 0);
+      }
+
+      @media (max-width: $sm) {
+        width: 100%;
+        margin-right: 0;
+      }
+    }
+
+    .top-smartphone {
+      width: 30%;
     }
   }
 
@@ -350,10 +400,6 @@ input, button {
   .row {
     margin: 16% 0 0;
   }
-}
-
-.top-smartphone {
-  width: 30%;
 }
 
 // -- FEATURES --
@@ -427,7 +473,6 @@ input, button {
   @extend %section-default;
   background: $background-light-color;
   padding: 1.5rem 0;
-  //background-image: linear-gradient(to bottom, #032c3b, #032734, #03212d, #031c26, #00171f);
 
   #primarySlider {
     min-height: 10rem;
