@@ -259,9 +259,9 @@ function initScrollListeners() {
         // Navbar scrolled style
         const navAtTop = navbar.offsetHeight / 2; //The point where the navbar changes in px
         if (window.scrollY > navAtTop) {
-            navbar.classList.add("scrolled", "shadow");
+            navbar.classList.add("scrolled");
         } else {
-            navbar.classList.remove("scrolled", "shadow");
+            navbar.classList.remove("scrolled");
         }
 
         // Current nav section highlight

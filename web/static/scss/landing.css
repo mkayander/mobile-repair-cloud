@@ -1,4 +1,4 @@
-.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, #overlay, .navbar-top .btn-sidebar, .navbar-top nav > a > span, .navbar-top nav > a, .navbar-top, .container {
+.rbtn.rbtn-primary, .contacts-info .contacts-item > a, .feature-icon-wrap, .feature-card, .top-section .hero-space .hero-text, #overlay, .navbar-top .btn-sidebar, .navbar-top nav > a > span, .navbar-top nav > a, .navbar-top, .container {
   -webkit-transition: all 0.3s ease-out;
   -moz-transition: all 0.3s ease-out;
   -o-transition: all 0.3s ease-out;
@@ -51,8 +51,26 @@ input, button {
 }
 
 .navbar-top {
+  background: rgba(0, 126, 167, 0);
+  box-shadow: 0 8px 32px 0 rgba(0, 126, 167, 0);
+  backdrop-filter: blur(0);
+  -webkit-backdrop-filter: blur(0);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0);
+  border: none;
   padding: 1rem 0;
   font-size: 20px;
+}
+.navbar-top.scrolled {
+  background: rgba(0, 126, 167, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 126, 167, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 0;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  padding: 0 0;
 }
 .navbar-top .container {
   display: flex;
@@ -93,10 +111,6 @@ input, button {
   font-size: inherit;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-}
-.navbar-top.scrolled {
-  background: #007ea7;
-  padding: 0 0;
 }
 .navbar-top .btn-sidebar {
   display: none;
@@ -246,17 +260,39 @@ input, button {
   justify-content: space-between;
   padding-top: 8rem;
 }
+@media (max-width: 542px) {
+  .top-section .hero-space {
+    flex-direction: column-reverse;
+  }
+}
 .top-section .hero-space .hero-text {
   margin-right: 5rem;
+  padding: 1rem;
+  height: auto;
+  margin-bottom: auto;
+  background: rgba(0, 126, 167, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(0, 126, 167, 0.25);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
 }
-@media (max-width: 991px) {
+@media (min-width: 1390px) {
   .top-section .hero-space .hero-text {
-    background: #00a8e8;
-    border-radius: 12px;
-    padding: 1rem;
-    height: auto;
-    margin-bottom: auto;
+    background: rgba(255, 255, 255, 0);
+    backdrop-filter: blur(0);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0);
+    border: 1px solid rgba(255, 255, 255, 0);
   }
+}
+@media (max-width: 542px) {
+  .top-section .hero-space .hero-text {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+.top-section .hero-space .top-smartphone {
+  width: 30%;
 }
 .top-section .top-background-svg {
   position: absolute;
@@ -266,10 +302,6 @@ input, button {
 }
 .top-section .row {
   margin: 16% 0 0;
-}
-
-.top-smartphone {
-  width: 30%;
 }
 
 .feature-card {
