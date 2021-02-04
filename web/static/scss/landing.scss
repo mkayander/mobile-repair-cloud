@@ -425,8 +425,9 @@ input, button {
     .top-smartphone {
       display: block;
       position: relative;
-      width: 600px;
-      height: 600px;
+      width: 40rem;
+      //height: 600px;
+      margin-bottom: auto;
 
       @media (max-width: $sm) {
         width: 70%;
@@ -436,7 +437,7 @@ input, button {
         //margin-right: 0;
       }
 
-      #smCase, #smBottom {
+      img, {
         position: absolute;
         top: 0;
         left: 0;
@@ -446,7 +447,21 @@ input, button {
       }
 
       #smCase {
+        position: initial;
         z-index: 20;
+      }
+
+      #smColor {
+        position: absolute;
+        top: 50%;
+        bottom: 50%;
+        left: 1%;
+        width: 95%;
+        height: 95%;
+        margin: auto auto;
+        background: linear-gradient(-120deg, #42e2f4, #4286f4, #d2c995);
+        z-index: -1;
+        border-radius: 10%;
       }
     }
   }
