@@ -320,7 +320,10 @@ input, button {
   }
 }
 .top-section .hero-space .top-smartphone {
-  width: 30%;
+  display: block;
+  position: relative;
+  width: 600px;
+  height: 600px;
 }
 @media (max-width: 542px) {
   .top-section .hero-space .top-smartphone {
@@ -329,6 +332,17 @@ input, button {
     margin-left: auto;
     margin-right: auto;
   }
+}
+.top-section .hero-space .top-smartphone #smCase, .top-section .hero-space .top-smartphone #smBottom {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.top-section .hero-space .top-smartphone #smCase {
+  z-index: 20;
 }
 .top-section .top-background-svg {
   position: absolute;

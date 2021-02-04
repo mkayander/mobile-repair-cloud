@@ -389,6 +389,7 @@ input, button {
       margin-bottom: auto;
 
       z-index: 50;
+
       * {
         //z-index: 50;
       }
@@ -422,7 +423,10 @@ input, button {
     }
 
     .top-smartphone {
-      width: 30%;
+      display: block;
+      position: relative;
+      width: 600px;
+      height: 600px;
 
       @media (max-width: $sm) {
         width: 70%;
@@ -430,6 +434,19 @@ input, button {
         margin-left: auto;
         margin-right: auto;
         //margin-right: 0;
+      }
+
+      #smCase, #smBottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+
+      #smCase {
+        z-index: 20;
       }
     }
   }
