@@ -130,18 +130,41 @@ input, button {
 .navbar-top {
   $navBorderWidth: 3px;
   @extend %transition-default;
-  @include glassmorph-hidden(10px, 0.75, $primary-dark-color, 0);
-  border: none;
 
   padding: 1rem 0;
   font-size: 20px;
 
-  &.scrolled {
-    @include glassmorph(10px, 0.75, $primary-dark-color, 0);
+  * {
+    z-index: 90;
+  }
+
+  &:before {
+    z-index: -1;
+    @extend %transition-default;
+    content: "";
+    top: 0;
+    left: 0;
+    display: block;
+    position: absolute;
+
+    @include glassmorph(12px, 0.75, $primary-dark-color, 0);
     border: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.18);
-    //background: $primary-dark-color;
+
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+
+  &.scrolled {
     padding: 0 0;
+
+    &:before {
+      @include glassmorph(10px, 0.5, $primary-dark-color, 0);
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+      opacity: 1;
+    }
   }
 
   .container {
@@ -355,10 +378,6 @@ input, button {
 
     @media (max-width: $sm) {
       flex-direction: column-reverse;
-
-      & > * {
-
-      }
     }
 
     .hero-text {
@@ -369,20 +388,36 @@ input, button {
       height: auto;
       margin-bottom: auto;
 
-      @include glassmorph(10px, 0.75, $primary-dark-color, 10px);
+      z-index: 50;
+      * {
+        //z-index: 50;
+      }
 
-      @media (min-width: 1390px) {
-        background: rgba(255, 255, 255, 0);
-        backdrop-filter: blur(0);
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0);
-        border: 1px solid rgba(255, 255, 255, 0);
+      &:before {
+        @extend %transition-default;
+        z-index: -1;
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        @include glassmorph(10px, 0.75, $primary-dark-color, 10px);
+        opacity: 1;
+      }
+
+
+      @media (min-width: 1420px) {
+        &:before {
+          opacity: 0;
+        }
       }
 
       @media (max-width: $sm) {
         width: 100%;
         margin-right: 0;
         margin-top: -50%;
-        z-index: 50;
       }
     }
 

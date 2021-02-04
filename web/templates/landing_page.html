@@ -189,38 +189,58 @@
 
 <!-- CONTACTS SECTION -->
 <section id="contacts" data-nav="true" class="contacts-section">
-    <div class="container" data-aos="fade-left">
+    <div data-aos="fade-left">
         <h1 class="pb-4 text-center">Контакты</h1>
         <div class="maps">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d925.3291412807945!2d37.553025831712176!3d55.405034164983256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aa8030448ccb1%3A0xad5754e25450529e!2z0JrRg9GC0YPQt9C-0LLQvi0x!5e0!3m2!1sru!2sru!4v1606466276236!5m2!1sru!2sru"
-                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""
-                    aria-hidden="false" tabindex="0"></iframe>
+            {#            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d925.3291412807945!2d37.553025831712176!3d55.405034164983256!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414aa8030448ccb1%3A0xad5754e25450529e!2z0JrRg9GC0YPQt9C-0LLQvi0x!5e0!3m2!1sru!2sru!4v1606466276236!5m2!1sru!2sru"#}
+            {#                    width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""#}
+            {#                    aria-hidden="false" tabindex="0"></iframe>#}
+            <a class="dg-widget-link"
+               href="http://2gis.ru/moscow/firm/70000001047773221/center/37.502156,55.428412/zoom/16?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=bigMap">Посмотреть
+                на карте Москвы</a>
+            <div class="dg-widget-link"><a
+                    href="http://2gis.ru/moscow/center/37.502156,55.428412/zoom/16/routeTab/rsType/bus/to/37.502156,55.428412╎Cloud, сервисный центр?utm_medium=widget-source&utm_campaign=firmsonmap&utm_source=route">Найти
+                проезд до Cloud, сервисный центр</a></div>
+            <script charset="utf-8" src="https://widgets.2gis.com/js/DGWidgetLoader.js"></script>
+            <script charset="utf-8">new DGWidgetLoader({
+                "width": 640,
+                "height": 600,
+                "borderColor": "#a3a3a3",
+                "pos": {"lat": 55.428412, "lon": 37.502156, "zoom": 16},
+                "opt": {"city": "moscow"},
+                "org": [{"id": "70000001047773221"}]
+            });</script>
+            <noscript style="color:#c00;font-size:16px;font-weight:bold;">Виджет карты использует JavaScript. Включите
+                его в настройках вашего браузера.
+            </noscript>
         </div>
-        <div class="row contacts-info">
-            <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="0">
-                <a href="tel:+78005553535">
-                    <i class="fas fa-mobile-alt"></i>
-                    <h5>+7 800 555-35-35</h5>
-                </a>
-            </div>
-            <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="100">
-                <a href="mailto:Dmitriy.Furkalo@dellin.ru" target="_blank" rel="noopener noreferrer">
-                    <i class="far fa-envelope"></i>
-                    <span>Dmitriy.Furkalo@dellin.ru</span>
-                </a>
-            </div>
-            <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="200">
-                <!--                <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">-->
-                <a href="https://yandex.ru/maps/-/CCUEIOFZkD" target="_blank" rel="noopener noreferrer">
-                    <i class="fas fa-map-marked-alt"></i>
-                    <span>Подольск, улица Правды, 31А</span>
-                </a>
-            </div>
-            <div class="col d-xs-block d-sm-none contacts-item">
-                <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">
-                    <i class="fas fa-location-arrow"></i>
-                    Яндекс Навигатор
-                </a>
+        <div class="container">
+            <div class="row contacts-info">
+                <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="0">
+                    <a href="tel:+78005553535">
+                        <i class="fas fa-mobile-alt"></i>
+                        <h5>+7 800 555-35-35</h5>
+                    </a>
+                </div>
+                <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="100">
+                    <a href="mailto:Dmitriy.Furkalo@dellin.ru" target="_blank" rel="noopener noreferrer">
+                        <i class="far fa-envelope"></i>
+                        <span>Dmitriy.Furkalo@dellin.ru</span>
+                    </a>
+                </div>
+                <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="200">
+                    <!--                <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">-->
+                    <a href="https://yandex.ru/maps/-/CCUEIOFZkD" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>Подольск, улица Правды, 31А</span>
+                    </a>
+                </div>
+                <div class="col d-xs-block d-sm-none contacts-item">
+                    <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">
+                        <i class="fas fa-location-arrow"></i>
+                        Яндекс Навигатор
+                    </a>
+                </div>
             </div>
         </div>
     </div>
