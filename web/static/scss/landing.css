@@ -346,15 +346,14 @@ input, button {
   z-index: 20;
 }
 .top-section .hero-space .top-smartphone #smColor {
+  z-index: -1;
   position: absolute;
   top: 50%;
-  bottom: 50%;
-  left: 1%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 95%;
   height: 95%;
-  margin: auto auto;
   background: linear-gradient(-120deg, #42e2f4, #4286f4, #d2c995);
-  z-index: -1;
   border-radius: 10%;
 }
 .top-section .top-background-svg {

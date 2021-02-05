@@ -1,3 +1,4 @@
+from constance import config
 from django.http import HttpRequest
 from django.shortcuts import render
 
@@ -20,4 +21,4 @@ def landing_page(request: HttpRequest):
     visitor.visit()
     visitor.save()
 
-    return render(request, "landing_page.html")
+    return render(request, "landing_page.html", {"config": config})

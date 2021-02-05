@@ -41,7 +41,8 @@ THIRD_PARTY_APPS = [
     'crispy_forms',
     'rest_framework',
     'phonenumber_field',
-    'imagekit'
+    'imagekit',
+    'constance'
     # 'encrypted_fields'
 ]
 
@@ -51,7 +52,7 @@ LOCAL_APPS = [
     'web',
 ]
 
-INSTALLED_APPS = LOCAL_APPS + THIRD_PARTY_APPS + DJANGO_APPS
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -151,3 +152,20 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = str(BASE_DIR.joinpath('sent_emails'))
+
+# Constance
+CONSTANCE_BACKEND = 'constance.backends.redisd.RedisBackend'
+CONSTANCE_REDIS_CONNECTION = {
+    'host': 'localhost',
+    'port': 6379,
+    'db': 7,
+}
+
+CONSTANCE_CONFIG = {
+    'TEL_NUMBER': ("+7 (995) 898-38-59", "Основной номер телефона, указанный на сайте"),
+    'MAIN_EMAIL': ("cloudsc@mail.ru", "Основной адрес электронной почты, указанный на сайте")
+}
+
+CONSTANCE_CONFIG_FIELDSETS = {
+    'Main settings': ('TEL_NUMBER', 'MAIN_EMAIL')
+}

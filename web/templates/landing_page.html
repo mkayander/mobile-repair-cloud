@@ -63,9 +63,9 @@
             <a class="" href="#contacts"><span>Контакты</span></a>
             <a class="" href="#feedback"><span>Оставить заявку</span></a>
         </nav>
-        <a class="telephone" href="tel:+78005553535">
+        <a class="telephone" href="tel:{{ config.TEL_NUMBER }}">
             <img src="{% static 'svg/telephone icon.svg' %}" alt="Call"/>
-            <h4>+7 800 555-35-35</h4>
+            <h4>{{ config.TEL_NUMBER }}</h4>
         </a>
         <button id="btnSideOpen" class="btn-sidebar" onclick="openNav()">
             &#9776;
@@ -105,7 +105,7 @@
 
             <div class="top-smartphone" data-aos="fade-up">
                 <img id="smCase" src="{% static 'svg/IPhone_12_Blue_Cut.svg' %}" alt="Smartphone"/>
-{#                <img id="smBackdrop" src="{% static 'svg/Screen.svg' %}" alt="Smartphone"/>#}
+                {#                <img id="smBackdrop" src="{% static 'svg/Screen.svg' %}" alt="Smartphone"/>#}
                 <img id="smBottom" src="{% static 'img/IPhone_12_Blue_cut.png' %}" alt="Background"/>
                 <div id="smColor"></div>
             </div>
@@ -219,26 +219,26 @@
         <div class="container">
             <div class="row contacts-info">
                 <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="0">
-                    <a href="tel:+78005553535">
+                    <a href="tel:{{ config.TEL_NUMBER }}">
                         <i class="fas fa-mobile-alt"></i>
-                        <h5>+7 800 555-35-35</h5>
+                        <h5>{{ config.TEL_NUMBER }}</h5>
                     </a>
                 </div>
                 <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="100">
-                    <a href="mailto:Dmitriy.Furkalo@dellin.ru" target="_blank" rel="noopener noreferrer">
+                    <a href="mailto:{{ config.MAIN_EMAIL }}" target="_blank" rel="noopener noreferrer">
                         <i class="far fa-envelope"></i>
-                        <span>Dmitriy.Furkalo@dellin.ru</span>
+                        <span>{{ config.MAIN_EMAIL }}</span>
                     </a>
                 </div>
                 <div class="col col-12 col-lg-4 contacts-item" data-aos="flip-up" data-aos-delay="200">
                     <!--                <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">-->
-                    <a href="https://yandex.ru/maps/-/CCUEIOFZkD" target="_blank" rel="noopener noreferrer">
+                    <a href="https://go.2gis.com/8tga45" target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-map-marked-alt"></i>
-                        <span>Подольск, улица Правды, 31А</span>
+                        <span>Ленинградская, 6а ст1, 4-й м-н, Подольск</span>
                     </a>
                 </div>
                 <div class="col d-xs-block d-sm-none contacts-item">
-                    <a href="yandexnavi://build_route_on_map?lat_to=55.405266&lon_to=37.553487">
+                    <a href="yandexnavi://build_route_on_map?lat_to=55.428412&lon_to=37.502156">
                         <i class="fas fa-location-arrow"></i>
                         Яндекс Навигатор
                     </a>
