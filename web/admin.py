@@ -5,7 +5,7 @@ from web.models import Visitor, FeedbackRequest, GalleryPhoto
 
 @admin.register(Visitor)
 class VisitorAdmin(admin.ModelAdmin):
-    list_display = ["session", "user_agent", "visit_count", "last_visit", "created_at"]
+    list_display = ["ip_address", "session", "user_agent", "visit_count", "last_visit", "created_at"]
 
 
 @admin.register(FeedbackRequest)

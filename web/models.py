@@ -16,6 +16,7 @@ class Visitor(TimeModelMixin):
     session = models.ForeignKey(Session, on_delete=models.SET_NULL, related_name="visitor_data", verbose_name="Сессия",
                                 null=True)
     user_agent = models.CharField(verbose_name="User-Agent", max_length=300)
+    ip_address = models.GenericIPAddressField(verbose_name="IP адрес", null=True, blank=True)
     last_visit = models.DateTimeField(verbose_name="Последний визит", null=True, editable=False)
     visit_count = models.PositiveBigIntegerField(verbose_name="Кол-во посещений", default=0)
 
