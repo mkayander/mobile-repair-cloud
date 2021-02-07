@@ -20,7 +20,6 @@ $sm: 542px;
   transition: all $duration ease-out;
 }
 
-
 @mixin glassmorph($blur: 9px, $transparency: 0.25, $color: #fff, $radius: 10px) {
   background: transparentize($color, $transparency);
   box-shadow: 0 8px 32px 0 transparentize($primary-dark-color, 0.75);
@@ -37,6 +36,60 @@ $sm: 542px;
   -webkit-backdrop-filter: blur(0);
   border-radius: $radius;
   border: 1px solid rgba(255, 255, 255, 0);
+}
+
+@mixin gradient-animation() {
+  background: linear-gradient(220deg, #42e2f4, #00c4ff, #4286f4, #f59788, #d2c995);
+  background-size: 500% 500%;
+  -webkit-animation: smartphone-bg-color 11s ease infinite;
+  -moz-animation: smartphone-bg-color 11s ease infinite;
+  -o-animation: smartphone-bg-color 11s ease infinite;
+  animation: smartphone-bg-color 11s ease infinite;
+
+  @-webkit-keyframes smartphone-bg-color {
+    0% {
+      background-position: 94% 0
+    }
+    50% {
+      background-position: 7% 100%
+    }
+    100% {
+      background-position: 94% 0
+    }
+  }
+  @-moz-keyframes smartphone-bg-color {
+    0% {
+      background-position: 94% 0
+    }
+    50% {
+      background-position: 7% 100%
+    }
+    100% {
+      background-position: 94% 0
+    }
+  }
+  @-o-keyframes smartphone-bg-color {
+    0% {
+      background-position: 94% 0
+    }
+    50% {
+      background-position: 7% 100%
+    }
+    100% {
+      background-position: 94% 0
+    }
+  }
+  @keyframes smartphone-bg-color {
+    0% {
+      background-position: 94% 0
+    }
+    50% {
+      background-position: 7% 100%
+    }
+    100% {
+      background-position: 94% 0
+    }
+  }
 }
 
 @mixin mask($path) {
@@ -461,8 +514,11 @@ input, button {
         transform: translate(-50%, -50%);
         width: 95%;
         height: 95%;
-        background: linear-gradient(-120deg, #42e2f4, #4286f4, #d2c995);
+        //background-image: linear-gradient(20deg, #d2c995, #e6b182, #f59788, #f280a4, #d079cc, #ae86e6,
+        //        #7a95f8, #00a1ff, #00b4ff, #00c4ff, #00d4fb, #42e2f4);
         border-radius: 10%;
+
+        @include gradient-animation();
       }
     }
   }

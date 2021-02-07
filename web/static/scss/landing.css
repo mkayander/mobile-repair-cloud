@@ -356,8 +356,57 @@ input, button {
   transform: translate(-50%, -50%);
   width: 95%;
   height: 95%;
-  background: linear-gradient(-120deg, #42e2f4, #4286f4, #d2c995);
   border-radius: 10%;
+  background: linear-gradient(220deg, #42e2f4, #00c4ff, #4286f4, #f59788, #d2c995);
+  background-size: 500% 500%;
+  -webkit-animation: smartphone-bg-color 11s ease infinite;
+  -moz-animation: smartphone-bg-color 11s ease infinite;
+  -o-animation: smartphone-bg-color 11s ease infinite;
+  animation: smartphone-bg-color 11s ease infinite;
+}
+@-webkit-keyframes smartphone-bg-color {
+  0% {
+    background-position: 94% 0;
+  }
+  50% {
+    background-position: 7% 100%;
+  }
+  100% {
+    background-position: 94% 0;
+  }
+}
+@-moz-keyframes smartphone-bg-color {
+  0% {
+    background-position: 94% 0;
+  }
+  50% {
+    background-position: 7% 100%;
+  }
+  100% {
+    background-position: 94% 0;
+  }
+}
+@-o-keyframes smartphone-bg-color {
+  0% {
+    background-position: 94% 0;
+  }
+  50% {
+    background-position: 7% 100%;
+  }
+  100% {
+    background-position: 94% 0;
+  }
+}
+@keyframes smartphone-bg-color {
+  0% {
+    background-position: 94% 0;
+  }
+  50% {
+    background-position: 7% 100%;
+  }
+  100% {
+    background-position: 94% 0;
+  }
 }
 .top-section .top-background-svg {
   position: absolute;
