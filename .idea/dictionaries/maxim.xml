@@ -1,12 +1,15 @@
 <component name="ProjectDictionaryState">
   <dictionary name="maxim">
     <words>
+      <w>browserconfig</w>
       <w>cdnjs</w>
       <w>cloudflare</w>
       <w>csrfmiddlewaretoken</w>
       <w>csrftoken</w>
       <w>googleapis</w>
       <w>mixins</w>
+      <w>msapplication</w>
+      <w>mstile</w>
       <w>navbar</w>
       <w>phonenumber</w>
       <w>picsum</w>
@@ -14,6 +17,7 @@
       <w>splide</w>
       <w>toggler</w>
       <w>transparentize</w>
+      <w>webmanifest</w>
       <w>yandexnavi</w>
     </words>
   </dictionary>
