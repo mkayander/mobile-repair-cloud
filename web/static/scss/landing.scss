@@ -426,7 +426,6 @@ input, button {
       display: block;
       position: relative;
       width: 40rem;
-      //height: 600px;
       margin-bottom: auto;
 
       @media (max-width: $sm) {
@@ -434,7 +433,6 @@ input, button {
         z-index: 40;
         margin-left: auto;
         margin-right: auto;
-        //margin-right: 0;
       }
 
       img, {
@@ -451,8 +449,12 @@ input, button {
         z-index: 20;
       }
 
-      #smColor {
+      #smBottom {
         z-index: -1;
+      }
+
+      #smColor {
+        z-index: -2;
         position: absolute;
         top: 50%;
         left: 50%;

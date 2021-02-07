@@ -345,8 +345,11 @@ input, button {
   position: initial;
   z-index: 20;
 }
-.top-section .hero-space .top-smartphone #smColor {
+.top-section .hero-space .top-smartphone #smBottom {
   z-index: -1;
+}
+.top-section .hero-space .top-smartphone #smColor {
+  z-index: -2;
   position: absolute;
   top: 50%;
   left: 50%;
