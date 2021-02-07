@@ -327,8 +327,8 @@ function initGallery() {
                 <img src="${imageUrl}" alt="${id} ${description}">
             </a>
         </li>
-        `).trim()
-    }
+        `).trim();
+    };
 
     const {protocol, host} = window.location;
     ajaxGetJSON(`${protocol}//${host}/api/gallery/`, data => {
