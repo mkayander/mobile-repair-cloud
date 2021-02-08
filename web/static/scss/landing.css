@@ -319,6 +319,9 @@ input, button {
     margin-top: -50%;
   }
 }
+.top-section .hero-space .hero-text a {
+  float: right;
+}
 .top-section .hero-space .top-smartphone {
   display: block;
   position: relative;
@@ -333,7 +336,7 @@ input, button {
     margin-right: auto;
   }
 }
-.top-section .hero-space .top-smartphone img {
+.top-section .hero-space .top-smartphone #smBottom, .top-section .hero-space .top-smartphone #smCase {
   position: absolute;
   top: 0;
   left: 0;
@@ -408,6 +411,18 @@ input, button {
     background-position: 94% 0;
   }
 }
+.top-section .hero-space .top-smartphone #smLogo {
+  position: absolute;
+  object-fit: contain;
+  width: 70%;
+  height: 30%;
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-mask: url("/static/svg/cloud_service_logo.svg") no-repeat center;
+  mask: url("/static/svg/cloud_service_logo.svg") no-repeat center;
+}
 .top-section .top-background-svg {
   position: absolute;
   width: 100%;
@@ -422,7 +437,7 @@ input, button {
   }
 }
 .top-section .row {
-  margin: 16% 0 0;
+  margin: 12% 0 0;
 }
 
 .feature-card {

@@ -473,6 +473,10 @@ input, button {
         margin-right: 0;
         margin-top: -50%;
       }
+
+      a {
+        float: right;
+      }
     }
 
     .top-smartphone {
@@ -488,7 +492,7 @@ input, button {
         margin-right: auto;
       }
 
-      img, {
+      #smBottom, #smCase {
         position: absolute;
         top: 0;
         left: 0;
@@ -520,6 +524,19 @@ input, button {
 
         @include gradient-animation();
       }
+
+      #smLogo {
+        position: absolute;
+        object-fit: contain;
+        width: 70%;
+        height: 30%;
+        top: 24%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        background: rgba(255, 255, 255, 0.75);
+        @include mask("/static/svg/cloud_service_logo.svg");
+      }
     }
   }
 
@@ -539,7 +556,7 @@ input, button {
   }
 
   .row {
-    margin: 16% 0 0;
+    margin: 12% 0 0;
   }
 }
 
