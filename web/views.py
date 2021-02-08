@@ -3,8 +3,7 @@ import os
 
 from constance import config
 from django.http import HttpRequest, HttpResponse, Http404, HttpResponseNotModified
-from django.shortcuts import render, redirect
-
+from django.shortcuts import render
 # Create your views here.
 from django.utils.http import http_date
 from django.views import View
@@ -13,9 +12,10 @@ from django.views.static import was_modified_since
 from project import settings
 from web.models import Visitor
 
-
 # def index(request):
 #     return redirect("api/")
+
+mimetypes.add_type("application/x-javascript", ".js", True)
 
 
 def get_client_ip(request):
@@ -55,11 +55,15 @@ class StaticFileView(View):
         if not os.path.exists(path):
             raise Http404('"%s" does not exist' % path)
         stat = os.stat(path)
+
         mimetype, encoding = mimetypes.guess_type(path)
+        print(mimetype, encoding, path)
         mimetype = mimetype or 'application/octet-stream'
+
         if not was_modified_since(request.META.get('HTTP_IF_MODIFIED_SINCE'),
                                   stat.st_mtime, stat.st_size):
-            return HttpResponseNotModified(mimetype - mimetype)
+            return HttpResponseNotModified()
+
         response = HttpResponse(open(path, 'rb').read(), content_type=mimetype)
         response['Last-Modified'] = http_date(stat.st_mtime)
         response['Content-Length'] = stat.st_size
