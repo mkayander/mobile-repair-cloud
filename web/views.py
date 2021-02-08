@@ -57,7 +57,6 @@ class StaticFileView(View):
         stat = os.stat(path)
 
         mimetype, encoding = mimetypes.guess_type(path)
-        print(mimetype, encoding, path)
         mimetype = mimetype or 'application/octet-stream'
 
         if not was_modified_since(request.META.get('HTTP_IF_MODIFIED_SINCE'),
