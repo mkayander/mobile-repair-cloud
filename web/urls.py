@@ -2,10 +2,12 @@ import os
 
 from django.urls import path
 
+from project import settings
 from . import views
 
 urlpatterns = [
     path('', views.landing_page),
-    path('pwabuilder-sw.js', views.StaticFileView.as_view(source=os.path.join("js", "pwa.js")))
-    # path('api/', include('api.urls'))
 ]
+
+if not settings.DEBUG:
+    urlpatterns += path('pwabuilder-sw.js', views.StaticFileView.as_view(source=os.path.join("js", "pwa.js")))
