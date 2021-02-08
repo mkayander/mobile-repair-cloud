@@ -12,9 +12,7 @@ from django.views.static import was_modified_since
 from project import settings
 from web.models import Visitor
 
-# def index(request):
-#     return redirect("api/")
-
+# Add javascript mime type to js files explicitly
 mimetypes.add_type("application/x-javascript", ".js", True)
 
 
@@ -34,16 +32,11 @@ def landing_page(request: HttpRequest):
     visitor, created = Visitor.objects.get_or_create(session_id=request.session.session_key, defaults={
         "user_agent": request.headers["User-Agent"]
     })
-    # visitor.user_agent = request.headers["User-Agent"]
     visitor.visit()
     visitor.ip_address = get_client_ip(request)
     visitor.save()
 
     return render(request, "landing_page.html", {"config": config})
-
-
-def js_file(request: HttpRequest):
-    return HttpResponse("parent.Response_OK()", mimetype="application/x-javascript")
 
 
 class StaticFileView(View):
