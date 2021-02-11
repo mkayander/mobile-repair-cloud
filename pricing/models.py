@@ -1,11 +1,14 @@
 from django.db import models
-
 # Create your models here.
 from djmoney.models.fields import MoneyField
+
+from pricing.validators import validate_svg
 
 
 class Brand(models.Model):
     name = models.TextField(verbose_name="Наименование", max_length=64)
+    logo = models.FileField(verbose_name="Логотип", help_text="Требуемый формат - *.svg", upload_to="svg_logos/",
+                            validators=[validate_svg])
 
     class Meta:
         verbose_name = "Брэнд устройства"
