@@ -147,6 +147,17 @@ function initFeedbackForm() {
         }
     };
 
+    const phoneInput = form.querySelector("input#phone");
+    const re = /^\+7/g;
+    phoneInput.addEventListener("change", evt => {
+        phoneInput.value = phoneInput.value.replaceAll(/[^0-9+]/g, "");
+
+        if (phoneInput.value.length >= 2 && !re.test(phoneInput.value)) {
+            let number = phoneInput.value;
+            phoneInput.value = number.replace(number[0], "+7");
+        }
+    });
+
     const inputs = form.querySelectorAll("input, textarea, select");
     forEach(inputs, input => {
         input.addEventListener("change", () => {
@@ -155,13 +166,6 @@ function initFeedbackForm() {
             showErrorsForInput(input, errors[input.name]);
         });
     });
-
-    const phoneInput = form.querySelector("input#phone");
-    phoneInput.addEventListener("change", evt => {
-        console.log("Phone: ", evt);
-        phoneInput.value = phoneInput.value.replaceAll(/[^0-9+]/g, "");
-    });
-
 }
 
 function initSmoothSectionScrolls() {
@@ -191,6 +195,7 @@ function initSmoothSectionScrolls() {
         });
     });
 }
+
 
 function initScrollListeners() {
     const sections = document.querySelectorAll("[data-nav]");
