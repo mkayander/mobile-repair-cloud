@@ -6,7 +6,7 @@ from pricing.validators import validate_svg
 
 
 class Brand(models.Model):
-    name = models.TextField(verbose_name="Наименование", max_length=64)
+    name = models.CharField(verbose_name="Наименование", max_length=64)
     logo = models.FileField(verbose_name="Логотип", help_text="Требуемый формат - *.svg", upload_to="svg_logos/",
                             validators=[validate_svg])
 
@@ -16,7 +16,7 @@ class Brand(models.Model):
 
 
 class DeviceModel(models.Model):
-    name = models.TextField(verbose_name="Наименование", max_length=64)
+    name = models.CharField(verbose_name="Наименование", max_length=64)
     brand = models.ForeignKey(Brand, verbose_name="Брэнд", on_delete=models.CASCADE, related_name="models")
 
     class Meta:
@@ -25,7 +25,7 @@ class DeviceModel(models.Model):
 
 
 class Service(models.Model):
-    name = models.TextField(verbose_name="Наименование", max_length=128)
+    name = models.CharField(verbose_name="Наименование", max_length=128)
     model = models.ForeignKey(DeviceModel, verbose_name="Модель устройства", on_delete=models.CASCADE,
                               related_name="services")
     price = MoneyField(verbose_name="Стоимость", max_digits=8, decimal_places=2, default_currency='RUB', null=True)
