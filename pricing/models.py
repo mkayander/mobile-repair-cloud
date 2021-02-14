@@ -6,7 +6,7 @@ from pricing.validators import validate_svg
 
 
 class Brand(models.Model):
-    name = models.CharField(verbose_name="Наименование", max_length=64)
+    name = models.CharField(verbose_name="Наименование", max_length=64, unique=True)
     logo = models.FileField(verbose_name="Логотип", help_text="Требуемый формат - *.svg", upload_to="svg_logos/",
                             validators=[validate_svg])
 
@@ -22,6 +22,9 @@ class DeviceModel(models.Model):
     class Meta:
         verbose_name = "Модель устройства"
         verbose_name_plural = "Модели устройств"
+        constraints = [
+            models.UniqueConstraint(fields=["name", "brand"], name="unique_device_model")
+        ]
 
 
 class Service(models.Model):
@@ -33,3 +36,6 @@ class Service(models.Model):
     class Meta:
         verbose_name = "Услуга"
         verbose_name_plural = "Услуги"
+        constraints = [
+            models.UniqueConstraint(fields=["name", "model"], name="unique_device_service")
+        ]
