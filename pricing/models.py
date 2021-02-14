@@ -13,6 +13,10 @@ class Brand(models.Model):
     class Meta:
         verbose_name = "Брэнд устройства"
         verbose_name_plural = "Брэнды устройств"
+        ordering = ["name"]
+
+    def __str__(self):
+        return self.name
 
 
 class DeviceModel(models.Model):
@@ -25,6 +29,9 @@ class DeviceModel(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["name", "brand"], name="unique_device_model")
         ]
+
+    def __str__(self):
+        return f"{self.brand} {self.name}"
 
 
 class Service(models.Model):
@@ -39,3 +46,6 @@ class Service(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["name", "model"], name="unique_device_service")
         ]
+
+    def __str__(self):
+        return f"{self.model} {self.name}"
