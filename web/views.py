@@ -2,6 +2,7 @@ import mimetypes
 import os
 
 from constance import config
+from django.contrib.staticfiles.storage import staticfiles_storage
 from django.http import HttpRequest, HttpResponse, Http404, HttpResponseNotModified
 from django.shortcuts import render
 # Create your views here.
