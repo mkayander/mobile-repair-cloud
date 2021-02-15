@@ -36,7 +36,9 @@ THIRD_PARTY_APPS = [
     'rest_framework',
     'phonenumber_field',
     'imagekit',
-    'constance'
+    'constance',
+    'dbbackup',
+    'dbbackup_ui'
     # 'encrypted_fields'
 ]
 
@@ -171,3 +173,6 @@ CONSTANCE_CONFIG = {
 CONSTANCE_CONFIG_FIELDSETS = {
     'Main settings': ('TEL_NUMBER', 'MAIN_EMAIL')
 }
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, "backups")}

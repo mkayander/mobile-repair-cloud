@@ -22,6 +22,7 @@ from project import settings
 urlpatterns = [
     path('', include('web.urls')),
     path('admin/', admin.site.urls),
+    path('admin/backups/', include('dbbackup_ui.urls')),
     path('api/', include('api.urls'))
 ]
 
