@@ -4,7 +4,9 @@ from rest_framework import viewsets, mixins
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-from api.serializers import VisitorSerializer, FeedbackRequestSerializer, GalleryPhotoSerializer
+from api.serializers import VisitorSerializer, FeedbackRequestSerializer, GalleryPhotoSerializer, BrandSerializer, \
+    DeviceModelSerializer, ServiceSerializer
+from pricing.models import Brand, DeviceModel, Service
 from web.models import Visitor, FeedbackRequest, GalleryPhoto
 
 
@@ -22,7 +24,7 @@ class GalleryViewSet(viewsets.GenericViewSet,
     serializer_class = GalleryPhotoSerializer
 
 
-class FeedbackRequestViewSet(viewsets.ModelViewSet):
+class FeedbackRequestViewSet(viewsets.GenericViewSet, mixins.CreateModelMixin):
     queryset = FeedbackRequest.objects.all()
     serializer_class = FeedbackRequestSerializer
 
@@ -54,3 +56,24 @@ def acquire_visitor_identity(request):
     visitor.save()
 
     return Response(VisitorSerializer(visitor, context={'request': request}).data)
+
+
+class BrandViewSet(viewsets.GenericViewSet,
+                   mixins.RetrieveModelMixin,
+                   mixins.ListModelMixin):
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
+
+
+class DeviceModelViewSet(viewsets.GenericViewSet,
+                         mixins.RetrieveModelMixin,
+                         mixins.ListModelMixin):
+    queryset = DeviceModel.objects.all()
+    serializer_class = DeviceModelSerializer
+
+
+class ServiceViewSet(viewsets.GenericViewSet,
+                     mixins.RetrieveModelMixin,
+                     mixins.ListModelMixin):
+    queryset = Service.objects.all()
+    serializer_class = ServiceSerializer

@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from pricing.models import Brand, DeviceModel, Service
 from web.models import Visitor, FeedbackRequest, GalleryPhoto
 
 
@@ -21,4 +22,24 @@ class GalleryPhotoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = GalleryPhoto
+        fields = '__all__'
+
+
+class DeviceModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = DeviceModel
+        fields = '__all__'
+
+
+class BrandSerializer(serializers.ModelSerializer):
+    models = DeviceModelSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Brand
+        fields = ['name', 'logo', 'models']
+
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
         fields = '__all__'
