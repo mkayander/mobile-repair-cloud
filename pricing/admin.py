@@ -18,9 +18,11 @@ class BrandAdmin(admin.ModelAdmin):
 
 @admin.register(DeviceModel)
 class DeviceModelAdmin(admin.ModelAdmin):
-    pass
+    list_filter = ['brand']
 
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['__str__', 'price']
+    list_filter = ['model']
+    list_editable = ['price']

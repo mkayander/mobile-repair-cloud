@@ -11,7 +11,7 @@ class VisitorAdmin(admin.ModelAdmin):
 
 @admin.register(FeedbackRequest)
 class FeedbackRequestAdmin(admin.ModelAdmin):
-    list_display = ["subject", "phone", "email", "message", "visitor"]
+    list_display = ["subject", "phone", "email", "message", "visitor", "created_at"]
 
 
 @admin.register(GalleryPhoto)
