@@ -29,6 +29,7 @@ class DeviceModel(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["name", "brand"], name="unique_device_model")
         ]
+        ordering = ["brand", "name"]
 
     def __str__(self):
         return f"{self.brand} {self.name}"
@@ -46,6 +47,7 @@ class Service(models.Model):
         constraints = [
             models.UniqueConstraint(fields=["name", "model"], name="unique_device_service")
         ]
+        ordering = ["model", "name"]
 
     def __str__(self):
         return f"{self.model} {self.name}"
