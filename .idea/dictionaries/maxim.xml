@@ -10,6 +10,7 @@
       <w>djmoney</w>
       <w>googleapis</w>
       <w>mixins</w>
+      <w>modelcluster</w>
       <w>msapplication</w>
       <w>mstile</w>
       <w>navbar</w>
@@ -20,6 +21,8 @@
       <w>splide</w>
       <w>toggler</w>
       <w>transparentize</w>
+      <w>wagtailadmin</w>
+      <w>wagtaildocs</w>
       <w>webmanifest</w>
       <w>yandexnavi</w>
     </words>
