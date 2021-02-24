@@ -9,7 +9,7 @@ self.addEventListener("message", (event) => {
 });
 
 workbox.routing.registerRoute(
-  new RegExp('/*'),
+  "https://cloudsc.ru",
   new workbox.strategies.StaleWhileRevalidate({
     cacheName: CACHE
   })
