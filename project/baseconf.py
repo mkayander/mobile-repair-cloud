@@ -192,6 +192,8 @@ CONSTANCE_CONFIG_FIELDSETS = {
     'Main settings': ('TEL_NUMBER', 'MAIN_EMAIL')
 }
 
+CONSTANCE_SUPERUSER_ONLY = False
+
 DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
 DBBACKUP_STORAGE_OPTIONS = {'location': os.path.join(BASE_DIR, "backups")}
 
