@@ -33,6 +33,6 @@ six==1.15.0
 sqlparse==0.4.2
 traitlets==5.0.5
 uuid==1.30
-wagtail==2.12.2
+wagtail==2.12.5
 wcwidth==0.2.5
 XlsxWriter==1.3.7
